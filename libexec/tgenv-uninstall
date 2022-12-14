@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+[ -n "${TGENV_DEBUG}" ] && set -x
+source "${TGENV_ROOT}/libexec/helpers"
+
+[ "${#}" -gt 1 ] && error_and_die "usage: tgenv uninstall [<version>]"
+
+declare version_requested version regex
+
+if [ -z "${1}" ]; then
+  version_file="$(tgenv-version-file)"
+  if [ "${version_file}" != "${TGENV_ROOT}/version" ];then
+    version_requested="$(cat "${version_file}" || true)"
+  fi
+else
+  version_requested="${1}"
+fi
+
+if [[ "${version_requested}" =~ ^latest\:.*$ ]]; then
+  version="${version_requested%%\:*}"
+  regex="${version_requested##*\:}"
+elif [[ "${version_requested}" =~ ^latest$ ]]; then
+  version="${version_requested}"
+  regex=""
+else
+  version="${version_requested}"
+  regex="^${version_requested}$"
+fi
+
+[ -n "${version}" ] || error_and_die "Version is not specified"
+version="$(tgenv-list | sed -E 's/^(\*| )? //g; s/ \(set by .+\)$//' | grep -e "${regex}" | head -n 1)"
+[ -n "${version}" ] || error_and_die "No versions matching '${1}' found in local"
+
+dst_path="${TGENV_ROOT}/versions/${version}"
+if [ -f "${dst_path}/terragrunt" ]; then 
+  info "Uninstall Terragrunt v${version}"
+  rm -r "${dst_path}"
+  info "\033[0;32mTerragrunt v${version} is successfully uninstalled\033[0;39m"
+fi
