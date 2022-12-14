@@ -36,7 +36,7 @@ Install a specific version of terragrunt
 `latest:<regex>` is a syntax to install latest version matching regex (used by grep -e)
 
 ```bash
-$ tgenv install 0.12.12
+$ tgenv install 0.40.2
 $ tgenv install latest
 $ tgenv install latest:^0.9
 ```
@@ -49,7 +49,7 @@ Switch a version to use
 `latest:<regex>` is a syntax to use latest installed version matching regex (used by grep -e)
 
 ```bash
-$ tgenv use 0.12.1
+$ tgenv use 0.40.2
 $ tgenv use latest
 $ tgenv use latest:^0.10
 ```
@@ -81,29 +81,19 @@ List installable versions
 
 ```bash
 % tgenv list-remote
-0.12.15
-0.12.14
-0.12.13
-0.12.12
-0.12.11
-0.12.10
-0.12.9
-0.12.8
-0.12.7
-0.12.6
-0.12.5
-0.12.4
-0.12.3
-0.12.2
-0.12.1
-0.12.0
-0.11.1
-0.11.0
-0.10.3
-0.10.2
-0.10.1
-0.10.0
-0.9.9
+0.42.5
+0.42.4
+0.42.3
+0.42.2
+0.42.1
+0.42.0
+0.41.0
+0.40.2
+0.40.1
+0.40.0
+0.39.2
+0.39.1
+0.39.0
 ...
 ```
 
