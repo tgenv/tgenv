@@ -17,7 +17,7 @@ Currently tgenv supports the following OSes
 1. Check out tgenv into any path (here is `${HOME}/.tgenv`)
 
   ```bash
-  $ git clone https://github.com/cunymatthieu/tgenv.git ~/.tgenv
+  $ git clone https://github.com/tgenv/tgenv.git ~/.tgenv
   ```
 
 2. Add `~/.tgenv/bin` to your `$PATH` any way you like
@@ -158,5 +158,5 @@ $ rm -rf /some/path/to/tgenv
 ```
 
 ## LICENSE
-- [tgenv itself](https://github.com/cunymatthieu/tgenv/blob/master/LICENSE)
+- [tgenv itself](https://github.com/tgenv/tgenv/blob/master/LICENSE)
 - [tfenv ](https://github.com/kamatama41/tgenv/blob/master/LICENSE) : tfenv mainly uses tfenv's source code
