@@ -13,6 +13,12 @@ function info() {
   echo -e "\033[0;32m[INFO] ${1}\033[0;39m"
 }
 
+function debug() {
+  if [ -n "${TGENV_DEBUG}" ]; then
+    echo -e "\033[0;34m[DEBUG] ${1}\033[0;39m"
+  fi
+}
+
 # Curl wrapper to switch TLS option for each OS
 function curlw () {
   local TLS_OPT="--tlsv1.2"
