@@ -9,13 +9,14 @@ if [ ${#} -ne 0 ];then
   exit 1
 fi
 
-link_release="https://api.github.com/repos/gruntwork-io/terragrunt/tags?per_page=1000"
-print=$(curl --tlsv1.2 -sf $link_release)
-
+git ls-remote --tags https://github.com/gruntwork-io/terragrunt \
+  | awk '{ print $2 }' \
+  | cut -d "/" -f 3 \
+  | sed 's/v//' \
+  | sort -V
 return_code=$?
-if [ $return_code -eq 22 ];then
-  warn_and_continue "Failed to get list verion on $link_release"
+
+if [ $return_code != 0 ];then
+  warn_and_continue "Failed to list tags for https://github.com/gruntwork-io/terragrunt"
   print=`cat ${TGENV_ROOT}/list_all_versions_offline`
 fi
-
-echo $print | grep -o -E "[0-9]+\.[0-9]+\.[0-9]+(-(rc|beta)[0-9]+)?" | uniq
