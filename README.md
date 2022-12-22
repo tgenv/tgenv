@@ -10,6 +10,7 @@ This project was forked from old project [tgenv](https://github.com/cunymatthieu
 ## Support
 Currently tgenv supports the following OSes
 - Mac OS X (64bit)
+- Mac OS M1 (arm64)
 - Linux (64bit)
 
 ## Installation
