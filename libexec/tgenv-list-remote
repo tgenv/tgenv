@@ -13,7 +13,7 @@ git ls-remote --tags https://github.com/gruntwork-io/terragrunt \
   | awk '{ print $2 }' \
   | cut -d "/" -f 3 \
   | sed 's/v//' \
-  | sort -V
+  | sort -Vr
 return_code=$?
 
 if [ $return_code != 0 ];then
