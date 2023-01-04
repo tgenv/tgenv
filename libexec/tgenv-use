@@ -3,11 +3,20 @@
 [ -n "${TGENV_DEBUG}" ] && set -x
 source "${TGENV_ROOT}/libexec/helpers"
 
-[ "${#}" -ne 1 ] && error_and_die "usage: tgenv use <version>"
-
 declare version_requested version regex
 
-version_requested="${1}"
+if [ -z "${1}" ]; then
+  info "Version not specified, looking for version file"
+  version_file="$(tgenv-version-file)"
+  if [ "${version_file}" != "${TGENV_ROOT}/version" ]; then
+    version_requested="$(cat "${version_file}" || true)"
+  else
+    info "Version file not found, using latest"
+    version_requested="latest"
+  fi
+else
+  version_requested="${1}"
+fi
 
 if [[ "${version_requested}" =~ ^latest\:.*$ ]]; then
   version="${version_requested%%\:*}"
@@ -29,7 +38,7 @@ version="$(\ls "${TGENV_ROOT}/versions" \
   | head -n 1
 )"
 
-[ -n "${version}" ] || error_and_die "No installed versions of terragrunt matched '${1}'"
+[ -n "${version}" ] || error_and_die "No installed versions of terragrunt matched '${version_requested}'"
 
 target_path="${TGENV_ROOT}/versions/${version}"
 [ -f "${target_path}/terragrunt" ] \
