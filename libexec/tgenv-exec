@@ -28,7 +28,7 @@ TGENV_VERSION="$(tgenv-version-name)" \
 export TGENV_VERSION;
 
 if [ ! -d "${TGENV_ROOT}/versions/${TGENV_VERSION}" ]; then
-  if [ "${TGENV_AUTO_INSTALL:-false}" == "true" ]; then
+  if [ "${TGENV_AUTO_INSTALL:-true}" == "true" ]; then
     info "version '${TGENV_VERSION}' is not installed (set by $(tgenv-version-file)). Installing now as TGENV_AUTO_INSTALL==true";
     tgenv-install;
   else
