@@ -24,54 +24,29 @@ cleanup || error_and_die "Cleanup failed?!"
 versions=(
   0.38.12
   0.37.4
-  # 0.36.11
-  # 0.33.0
-  # 0.29.7
+  0.36.11
+  0.33.0
+  0.29.7
 )
 for v in "${versions[@]}"; do
   tgenv install ${v} || error_and_proceed "Install of version ${v} failed"
 done
 tgenv use 0.38.12
 
-# NOTE(iokiwi): Hardcoding the expected output like this may work for the github action
-# but will probably fail if run locally. I believe there is an example of the output 
-# being generated more dynamically in the tfenv project that we could 'borrow'.
 result="$(tgenv list)";
-if [[ $(uname) == 'Darwin' ]]; then
-    expected="$(cat << EOS
-* 0.38.12 (set by /Users/runner/work/tgenv/tgenv/version)
+expected="$(cat << EOS
+* 0.38.12 (set by $(tgenv version-file))
   0.37.4
+  0.36.11
+  0.33.0
+  0.29.7
 EOS
 )"
-else
-    expected="$(cat << EOS
-* 0.38.12 (set by /home/runner/work/tgenv/tgenv/version)
-  0.37.4
-EOS
-)"
+
+# Note macos appears to have problems with variable expansion here
+if [ "${expected}" != "${result}" ]; then
+  error_and_proceed "List mismatch.\nExpected:\n${expected}\nGot:\n${result}"
 fi
-
-# echo "---- BEGIN DEBUG ----"
-# echo "${expected}"
-# echo "${result}"
-# echo "----- END DEBUG -----"
-
-# expected="$(cat << EOS
-#   0.38.12
-#   0.37.4
-#   0.36.11
-#   0.33.0
-# * 0.29.7 (set by /home/runner/work/tgenv/tgenv/version)
-# EOS
-# )"
-
-[ "${expected}" == "${result}" ] \
-  || error_and_proceed "List mismatch.\nExpected:\n${expected}\nGot:\n${result}"
-
-# # Note macos appears to have problems with variable expansion here
-# if [ "${expected}" != "${result}" ]; then
-#   error_and_proceed "List mismatch.\nExpected:\n${expected}\nGot:\n${result}"
-# fi
 
 if [ ${#errors[@]} -gt 0 ]; then
   echo -e "\033[0;31m===== The following list tests failed =====\033[0;39m" >&2
