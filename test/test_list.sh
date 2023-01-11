@@ -36,10 +36,17 @@ done
 # but will probably fail if run locally. I believe there is an example of the output 
 # being generated more dynamically in the tfenv project that we could 'borrow'.
 result="$(tgenv list)";
-expected="$(cat << EOS
+if [[ $(uname) == 'Darwin' ]]; then
+    expected="$(cat << EOS
+* 0.38.12 (set by /Users/runner/work/tgenv/tgenv/version)
+EOS
+)"
+else
+    expected="$(cat << EOS
 * 0.38.12 (set by /home/runner/work/tgenv/tgenv/version)
 EOS
 )"
+fi
 
 # echo "---- BEGIN DEBUG ----"
 # echo "${expected}"
