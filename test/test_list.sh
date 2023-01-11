@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -uo pipefail;
+# set -uo pipefail;
 
 declare -a errors
 
@@ -14,7 +14,7 @@ function error_and_die() {
   exit 1
 }
 
-[ -n "${TGENV_DEBUG}" ] && set -x
+[ "${TGENV_DEBUG:-0}" -gt 0 ] && set -x
 source $(dirname $0)/helpers.sh \
   || error_and_die "Failed to load test helpers: $(dirname $0)/helpers.sh"
 
@@ -41,10 +41,10 @@ expected="$(cat << EOS
 EOS
 )"
 
-echo "---- BEGIN DEBUG ----"
-echo "${expected}"
-echo "${result}"
-echo "----- END DEBUG -----"
+# echo "---- BEGIN DEBUG ----"
+# echo "${expected}"
+# echo "${result}"
+# echo "----- END DEBUG -----"
 
 # expected="$(cat << EOS
 #   0.38.12

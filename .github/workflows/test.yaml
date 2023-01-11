@@ -24,15 +24,15 @@ jobs:
       - uses: 'actions/checkout@v2'
         with:
           fetch-depth: 1
-      # - name: 'Install Dependencies'
-      #   run: './test/install_deps.sh'
+      - name: 'Install Dependencies'
+        run: './test/install_deps.sh'
       - name: 'Run all tests'
         run: './test/run.sh'
         shell: 'bash'
-      - uses: 'docker/setup-buildx-action@v2'
-        if: contains(matrix.os, 'ubuntu')
-        with:
-          install: true
+      # - uses: 'docker/setup-buildx-action@v2'
+      #   if: contains(matrix.os, 'ubuntu')
+      #   with:
+      #     install: true
       # - uses: 'docker/build-push-action@v3'
       #   if: contains(matrix.os, 'ubuntu')
       #   with:
