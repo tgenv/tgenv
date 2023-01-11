@@ -36,17 +36,20 @@ expected="$(cat << EOS
 EOS
 )"
 
-echo "---- BEGIN DEBUG INFO ----"
-uname -a
-echo "${BASH_VERSION}"
-echo "${expected}"
-echo "${result}"
-echo "---- END DEBUG INFO ----"
+# echo "---- BEGIN DEBUG INFO ----"
+# uname -a
+# echo "${BASH_VERSION}"
+# echo "${expected}"
+# echo "${result}"
+# echo "---- END DEBUG INFO ----"
 
-# Note macos appears to have problems with variable expansion here
-if [ "${expected}" != "${result}" ]; then
-  error_and_proceed "List mismatch.\nExpected:\n${expected}\nGot:\n${result}"
-fi
+[ "${expected}" == "${result}"] \
+  || error_and_proceed "List mismatch.\nExpected:\n${expected}\nGot:\n${result}"
+
+# # Note macos appears to have problems with variable expansion here
+# if [ "${expected}" != "${result}" ]; then
+#   error_and_proceed "List mismatch.\nExpected:\n${expected}\nGot:\n${result}"
+# fi
 
 if [ ${#errors[@]} -gt 0 ]; then
   echo -e "\033[0;31m===== The following list tests failed =====\033[0;39m" >&2
