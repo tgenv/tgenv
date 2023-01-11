@@ -1,8 +1,10 @@
 # TGENV - Terragrunt Version Manager
 
+![Tests](https://github.com/tgenv/tgenv/actions/workflows/test.yaml/badge.svg?branch=main)
+
 ![tgenvlogo](/assets/tgenv-logo.png)
 
-This project was forked from old project [tgenv](https://github.com/cunymatthieu/tgenv). The intention here it's keep the project alive.
+This project was forked from old project [cunymatthieu/tgenv](https://github.com/cunymatthieu/tgenv). The intention here it's keep the project alive.
 
 [Terragrunt](https://github.com/gruntwork-io/terragrunt) version manager inspired by [tfenv](https://github.com/kamatama41/tfenv)
 
