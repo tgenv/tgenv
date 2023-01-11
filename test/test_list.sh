@@ -26,7 +26,7 @@ done
 # NOTE(iokiwi): Hardcoding the expected output like this may work for the github action
 # but will probably fail if run locally. I believe there is an example of the output 
 # being generated more dynamically in the tfenv project that we could 'borrow'.
-result=$(tgenv list | tr ' ' '_' | tr '\n' '_' )
+result="$(tgenv list)";
 expected="$(cat << EOS
   0.38.12
   0.37.4
@@ -34,10 +34,10 @@ expected="$(cat << EOS
   0.33.0
 * 0.29.7 (set by /home/runner/work/tgenv/tgenv/version)
 EOS
- | tr ' ' '_' | tr '\n' '_' )"
+)"
 
-# Note macos has problems with variable expansion here
-if [[ "${expected}" != "${result}" ]]; then
+# Note macos appears to have problems with variable expansion here
+if [ "${expected}" != "${result}" ]; then
   error_and_proceed "List mismatch.\nExpected:\n${expected}\nGot:\n${result}"
 fi
 
