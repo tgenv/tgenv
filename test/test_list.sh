@@ -43,7 +43,7 @@ EOS
 # echo "${result}"
 # echo "---- END DEBUG INFO ----"
 
-[ "${expected}" == "${result}"] \
+[ "${expected}" == "${result}" ] \
   || error_and_proceed "List mismatch.\nExpected:\n${expected}\nGot:\n${result}"
 
 # # Note macos appears to have problems with variable expansion here
