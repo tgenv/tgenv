@@ -23,7 +23,7 @@ cleanup || error_and_die "Cleanup failed?!"
 
 versions=(
   0.38.12
-  # 0.37.4
+  0.37.4
   # 0.36.11
   # 0.33.0
   # 0.29.7
@@ -31,6 +31,7 @@ versions=(
 for v in "${versions[@]}"; do
   tgenv install ${v} || error_and_proceed "Install of version ${v} failed"
 done
+tgenv use 0.38.12
 
 # NOTE(iokiwi): Hardcoding the expected output like this may work for the github action
 # but will probably fail if run locally. I believe there is an example of the output 
@@ -39,11 +40,13 @@ result="$(tgenv list)";
 if [[ $(uname) == 'Darwin' ]]; then
     expected="$(cat << EOS
 * 0.38.12 (set by /Users/runner/work/tgenv/tgenv/version)
+  0.37.4
 EOS
 )"
 else
     expected="$(cat << EOS
 * 0.38.12 (set by /home/runner/work/tgenv/tgenv/version)
+  0.37.4
 EOS
 )"
 fi
