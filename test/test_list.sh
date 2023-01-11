@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -uo pipefail;
+
 declare -a errors
 
 function error_and_proceed() {
@@ -35,9 +37,15 @@ done
 # being generated more dynamically in the tfenv project that we could 'borrow'.
 result="$(tgenv list)";
 expected="$(cat << EOS
-* 0.29.7 (set by /home/runner/work/tgenv/tgenv/version)
+* 0.38.12 (set by /home/runner/work/tgenv/tgenv/version)
 EOS
 )"
+
+echo "---- BEGIN DEBUG ----"
+echo "${expected}"
+echo "${result}"
+echo "----- END DEBUG -----"
+
 # expected="$(cat << EOS
 #   0.38.12
 #   0.37.4
