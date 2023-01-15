@@ -1,18 +1,9 @@
 #!/usr/bin/env bash
 
-# set -uo pipefail;
-
+set -uo pipefail;
 declare -a errors
 
-function error_and_proceed() {
-  errors+=("${1}")
-  echo -e "tgenv: ${0}: Test Failed: ${1}" >&2
-}
-
-function error_and_die() {
-  echo -e "tgenv: ${0}: ${1}" >&2
-  exit 1
-}
+source "${TGENV_ROOT}/libexec/helpers"
 
 [ "${TGENV_DEBUG:-0}" -gt 0 ] && set -x
 source $(dirname $0)/helpers.sh \

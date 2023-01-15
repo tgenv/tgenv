@@ -2,15 +2,7 @@
 
 declare -a errors
 
-function error_and_proceed() {
-  errors+=("${1}")
-  echo -e "tgenv: Test Failed: ${1}" >&2
-}
-
-function error_and_die() {
-  echo -e "tgenv: ${1}" >&2
-  exit 1
-}
+source "${TGENV_ROOT}/libexec/helpers"
 
 [ -n "${TGENV_DEBUG}" ] && set -x
 source $(dirname $0)/helpers.sh \

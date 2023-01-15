@@ -4,7 +4,8 @@ if [ -n "${TGENV_DEBUG}" ]; then
   export PS4='+ [${BASH_SOURCE##*/}:${LINENO}] '
   set -x
 fi
-TGENV_ROOT=$(cd $(dirname ${0})/.. && pwd)
+
+export TGENV_ROOT=$(cd $(dirname ${0})/.. && pwd)
 export PATH="${TGENV_ROOT}/bin:${PATH}"
 
 errors=()

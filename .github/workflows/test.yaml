@@ -29,22 +29,6 @@ jobs:
       - name: 'Run all tests'
         run: './test/run.sh'
         shell: 'bash'
-      # - uses: 'docker/setup-buildx-action@v2'
-      #   if: contains(matrix.os, 'ubuntu')
-      #   with:
-      #     install: true
-      # - uses: 'docker/build-push-action@v3'
-      #   if: contains(matrix.os, 'ubuntu')
-      #   with:
-      #     context: .
-      #     load: true
-      #     tags: "tgenv-terraform:${{ github.head_ref }}"
-      # - name: 'Check Dockerfile'
-      #   if: contains(matrix.os, 'ubuntu')
-      #   run: |
-      #     expect=1.2.3;
-      #     got="$(docker run -e "TGENV_TERRAFORM_VERSION=${expect}" "tgenv-terraform:${{ github.head_ref }}" version)";
-      #     echo "${got}" | tee /dev/stderr | grep -e 'Terraform v1.2.3'
 
   # When we push to main, test everything in order to guarantee releases
   test-main-pushes:
@@ -69,19 +53,3 @@ jobs:
       - name: 'Run all tests'
         run: './test/run.sh'
         shell: 'bash'
-      # - uses: 'docker/setup-buildx-action@v2'
-      #   if: contains(matrix.os, 'ubuntu')
-      #   with:
-      #     install: true
-      # - uses: 'docker/build-push-action@v3'
-      #   if: contains(matrix.os, 'ubuntu')
-      #   with:
-      #     context: .
-      #     load: true
-      #     tags: 'tgenv-terraform:latest'
-      # - name: 'Check Dockerfile'
-      #   if: contains(matrix.os, 'ubuntu')
-      #   run: |
-      #     expect=1.2.3;
-      #     got="$(docker run -e "TGENV_TERRAFORM_VERSION=${expect}" tgenv-terraform:latest version)";
-      #     echo "${got}" | tee /dev/stderr | grep -e 'Terraform v1.2.3'
