@@ -2,15 +2,7 @@
 
 declare -a errors
 
-function error_and_proceed() {
-  errors+=("${1}")
-  echo -e "tgenv: Test Failed: ${1}" >&2
-}
-
-function error_and_die() {
-  echo -e "tgenv: ${1}" >&2
-  exit 1
-}
+source "${TGENV_ROOT}/libexec/helpers"
 
 [ -n "${TGENV_DEBUG}" ] && set -x
 source $(dirname $0)/helpers.sh \
@@ -23,9 +15,11 @@ export PATH="${TGENV_BIN_DIR}:${PATH}"
 
 echo "### Test supporting symlink"
 cleanup || error_and_die "Cleanup failed?!"
-tgenv install 0.12.15 || error_and_proceed "Install failed"
-tgenv use 0.12.15 || error_and_proceed "Use failed"
-check_version 0.12.15 || error_and_proceed "Version check failed"
+
+v=0.35.17
+tgenv install ${v} || error_and_proceed "Install failed"
+tgenv use ${v} || error_and_proceed "Use failed"
+check_version ${v} || error_and_proceed "Version check failed"
 
 if [ ${#errors[@]} -gt 0 ]; then
   echo -e "\033[0;31m===== The following symlink tests failed =====\033[0;39m" >&2
