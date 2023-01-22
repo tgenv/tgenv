@@ -24,6 +24,8 @@ jobs:
       - uses: 'actions/checkout@v2'
         with:
           fetch-depth: 1
+      - name: 'Setup runner'
+        run: './test/setup_runner.sh'
       - name: 'Install Dependencies'
         run: './test/install_deps.sh'
       - name: 'Run all tests'
@@ -42,6 +44,8 @@ jobs:
       - uses: 'actions/checkout@v2'
         with:
           fetch-depth: 1
+      - name: 'Setup runner'
+        run: './test/setup_runner.sh'
       - name: 'Install Dependencies'
         run: './test/install_deps.sh'
       - name: 'Run all tests'
