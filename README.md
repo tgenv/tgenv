@@ -1,6 +1,6 @@
 # TGENV - Terragrunt Version Manager
 
-![Tests](https://github.com/tgenv/tgenv/actions/workflows/test.yaml/badge.svg?branch=main)
+![Tests](https://github.com/tgenv/tgenv/actions/workflows/tests.yml/badge.svg?branch=main)
 
 ![tgenvlogo](/assets/tgenv-logo.png)
 
