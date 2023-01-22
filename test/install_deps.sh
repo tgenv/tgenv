@@ -6,7 +6,7 @@ if [[ $(uname) == 'Darwin' ]] && [ $(which brew) ]; then
   exit
 fi;
 
-. /etc/os-relase
+. /etc/os-release
 if [[ "${ID}" == "alpine" ]]; then
     apk add bash git
 fi
