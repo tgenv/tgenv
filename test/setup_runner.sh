@@ -12,10 +12,10 @@ fi
 
 if [ "${ID}" = "ubuntu" ]; then
     apt update -y
-    apt install -y git
+    apt install -y git curl
 fi
 
 if [ "${ID}" = "fedora" ]; then
     yum update -y
-    yum install git -y
+    yum install -y git curl
 fi
