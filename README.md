@@ -18,7 +18,7 @@ Currently tgenv supports the following OSes
 
 ---
 
-## Table of Contents :bookmark: 
+## Summary :bookmark: 
 
 1. [Installation](#installation-🔧)
     1. [Cloning the repository](#1-cloning-the-repository)
