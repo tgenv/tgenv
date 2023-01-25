@@ -3,6 +3,10 @@
 [ -n "${TGENV_DEBUG}" ] && set -x
 source "${TGENV_ROOT}/libexec/helpers"
 
+FOLDER='$HOME/.tvenv'
+
+cd $FOLDER
+
 echo "Checkout to mainstream branch"
 echo ""
 
@@ -17,5 +21,8 @@ sleep 2
 git pull
 
 git log -1
+
+# Back to the previous local
+cd -
 
 exit 0
