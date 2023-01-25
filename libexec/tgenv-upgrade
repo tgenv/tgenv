@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+[ -n "${TGENV_DEBUG}" ] && set -x
+source "${TGENV_ROOT}/libexec/helpers"
+
 echo "Checkout to mainstream branch"
 echo ""
 

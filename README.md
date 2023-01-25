@@ -6,24 +6,57 @@
 
 This project was forked from old project [cunymatthieu/tgenv](https://github.com/cunymatthieu/tgenv). The intention here it's keep the project alive.
 
-[Terragrunt](https://github.com/gruntwork-io/terragrunt) version manager inspired by [tfenv](https://github.com/kamatama41/tfenv)
+>[Terragrunt](https://github.com/gruntwork-io/terragrunt) version manager inspired by [tfenv](https://github.com/kamatama41/tfenv) project.
 
 
-## Support
+## Support :computer:
+
 Currently tgenv supports the following OSes
 - Mac OS X (64bit)
 - Mac OS M1 (arm64)
 - Linux (64bit)
 
-## Installation
+---
 
-1. Check out tgenv into any path (here is `${HOME}/.tgenv`)
+## Table of Contents :bookmark: 
+
+1. [Installation](#installation-🔧)
+    1. [Cloning the repository](#1-cloning-the-repository)
+    2. [Export PATH](#2-export-to-path)
+         1. [Bash](#bash)
+         2. [ZSH](#zsh)
+2. [Usage](#usage-▶️)
+    1. [tgenv install](#tgenv-install)
+    2. [tgenv use](#tgenv-use)
+    3. [tgenv uninstall](#tgenv-uninstall)
+    4. [tgenv list](#tgenv-list)
+    5. [tgenv list-remote](#tgenv-list-remote)
+    5. [tgenv upgrade](#tgenv-upgrade)
+3. [The terragrunt-version file](#the-terragrunt-version-file-📄)
+4. [Environment Variables](#environment-variables-📦)
+    1. [TGENV_AUTO_INSTALL](#tgenv_auto_install)
+    2. [TGENV_DEBUG](#tgenv_debug)
+5. [Uninstalling](#uninstalling-🚫)
+6. [License](#license-👍)
+
+
+---
+
+## Installation :wrench:
+
+### 1. Cloning the repository
+
+Check out tgenv into any path (here is `${HOME}/.tgenv`)
 
   ```bash
   $ git clone https://github.com/tgenv/tgenv.git ~/.tgenv
   ```
 
-2. Add `~/.tgenv/bin` to your `$PATH` any way you like
+### 2. Export to PATH
+
+#### Bash
+
+Add `~/.tgenv/bin` to your `$PATH` any way you like
 
   ```bash
   $ echo 'export PATH="$HOME/.tgenv/bin:$PATH"' >> ~/.bash_profile
@@ -35,8 +68,24 @@ Currently tgenv supports the following OSes
   $ ln -s ~/.tgenv/bin/* /usr/local/bin
   ```
 
-## Usage
+#### ZSH
+
+Add `~/.tgenv/bin` to your `$PATH` any way you like
+
+  ```bash
+  $ echo 'export PATH="$HOME/.tgenv/bin:$PATH"' >> ~/.zshrc
+  ```
+
+If you use [Oh My Zsh](ttps://github.com/ohmyzsh/ohmyzsh), after export just run
+
+```bash
+$ omz reload
+```
+
+## Usage :arrow_forward:
+
 ### tgenv install
+
 Install a specific version of terragrunt  
 `latest` is a syntax to install latest version
 `latest:<regex>` is a syntax to install latest version matching regex (used by grep -e)
@@ -50,6 +99,7 @@ $ tgenv install latest:^0.9
 If you use [.terragrunt-version](#terragrunt-version), `tgenv install` (no argument) will install the version written in it.
 
 ### tgenv use
+
 Switch a version to use
 `latest` is a syntax to use the latest installed version
 `latest:<regex>` is a syntax to use latest installed version matching regex (used by grep -e)
@@ -61,6 +111,7 @@ $ tgenv use latest:^0.10
 ```
 
 ### tgenv uninstall
+
 Uninstall a specific version of terragrunt
 `latest` is a syntax to uninstall latest version
 `latest:<regex>` is a syntax to uninstall latest version matching regex (used by grep -e)
@@ -72,6 +123,7 @@ $ tgenv uninstall latest:^0.9
 ```
 
 ### tgenv list
+
 List installed versions
 
 ```bash
@@ -83,6 +135,7 @@ List installed versions
 ```
 
 ### tgenv list-remote
+
 List installable versions
 
 ```bash
@@ -103,7 +156,14 @@ List installable versions
 ...
 ```
 
-## .terragrunt-version
+### tgenv upgrade
+
+Upgrade the version of TGEnv software to latest version
+
+`$ tgenv upgrade`
+
+## The terragrunt-version file :page_facing_up:
+
 If you put `.terragrunt-version` file on your project root, tgenv detects it and use the version written in it. If the version is `latest` or `latest:<regex>`, the latest matching version currently installed will be selected.
 
 ```bash
@@ -127,11 +187,9 @@ $ terragrunt --version
 terragrunt v0.10.3
 ```
 
-### Environment Variables
+### Environment Variables :package:
 
-#### TGENV
-
-##### `TGENV_AUTO_INSTALL`
+#### `TGENV_AUTO_INSTALL`
 
 String (Default: true)
 
@@ -141,7 +199,7 @@ Should tgenv automatically install terragrunt if the version specified by defaul
 TGENV_AUTO_INSTALL=false terragrunt plan
 ```
 
-##### `TGENV_DEBUG`
+#### `TGENV_DEBUG`
 
 Integer (Default: "")
 
@@ -150,16 +208,17 @@ Set the debug level for TGENV.
 * unset/empty-string: No debug output
 * set: Bash execution tracing
 
-## Upgrading
-```bash
-$ git --git-dir=~/.tgenv/.git pull
-```
+## Uninstalling :no_entry_sign:
 
-## Uninstalling
+Just run:
 ```bash
 $ rm -rf /some/path/to/tgenv
 ```
 
-## LICENSE
+And delete the previous export `$PATH` .
+
+> The uninstall command is under development.
+
+## LICENSE :thumbsup:
 - [tgenv itself](https://github.com/tgenv/tgenv/blob/master/LICENSE)
 - [tfenv ](https://github.com/kamatama41/tgenv/blob/master/LICENSE) : tfenv mainly uses tfenv's source code
