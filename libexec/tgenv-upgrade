@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+echo "Checkout to mainstream branch"
+echo ""
+
+sleep 2
+
+git checkout main
+
+echo "Upgrade TGEnv to lastest version"
+
+sleep 2
+
+git pull
+
+git log -1
+
+exit 0
