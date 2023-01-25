@@ -2,6 +2,8 @@
 
 ![Tests](https://github.com/tgenv/tgenv/actions/workflows/tests.yml/badge.svg?branch=main)
 
+![lixnux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black) ![macos](https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=apple&logoColor=white) ![shell](https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white)
+
 ![tgenvlogo](/assets/tgenv-logo.png)
 
 This project was forked from old project [cunymatthieu/tgenv](https://github.com/cunymatthieu/tgenv). The intention here it's keep the project alive.
