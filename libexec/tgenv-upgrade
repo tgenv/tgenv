@@ -1,28 +1,30 @@
 #!/usr/bin/env bash
 
+##########################################
+#
+# This script just works like a software
+# version updater. It's a shortcut to
+# $ git checkout master && git pull
+#
+##########################################
+
 [ -n "${TGENV_DEBUG}" ] && set -x
 source "${TGENV_ROOT}/libexec/helpers"
 
-FOLDER='$HOME/.tvenv'
+TGFD=$HOME/.tgenv
+TGGB=$(git branch)
+TGGM=$(git -C $TGFD checkout main)
+TGGP=$(git pull)
+TGGL=$(git -C $TGFD log -1)
 
-cd $FOLDER
+# If branch it was different of main executes the checkout them
+if [$TGGB != 'main']; 
+then
+   $TGGM
+else
+   $TGGP
+fi;
 
-echo "Checkout to mainstream branch"
-echo ""
-
-sleep 2
-
-git checkout main
-
-echo "Upgrade TGEnv to lastest version"
-
-sleep 2
-
-git pull
-
-git log -1
-
-# Back to the previous local
-cd -
+echo $TGGL
 
 exit 0
