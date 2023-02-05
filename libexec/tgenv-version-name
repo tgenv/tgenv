@@ -6,7 +6,7 @@ set -e
 source "${TGENV_ROOT}/libexec/helpers"
 
 [ -d "${TGENV_ROOT}/versions" ] \
-  || error_and_die "No versions of terragrunt installed. Please install one with: tgenv install"
+    || mkdir -p ${TGENV_ROOT}/versions
 
 TGENV_VERSION_FILE="$(tgenv-version-file)"
 TGENV_VERSION="$(cat "${TGENV_VERSION_FILE}" || true)"
