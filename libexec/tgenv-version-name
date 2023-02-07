@@ -5,8 +5,7 @@ set -e
 [ -n "${TGENV_DEBUG}" ] && set -x
 source "${TGENV_ROOT}/libexec/helpers"
 
-[ -d "${TGENV_ROOT}/versions" ] \
-    || mkdir -p ${TGENV_ROOT}/versions
+mkdir -p ${TGENV_ROOT}/versions
 
 TGENV_VERSION_FILE="$(tgenv-version-file)"
 TGENV_VERSION="$(cat "${TGENV_VERSION_FILE}" || true)"
