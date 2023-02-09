@@ -60,6 +60,18 @@ echo ${v} > ./.terragrunt-version
   check_version ${v} || exit 1
 ) || error_and_proceed "Installing .terragrunt-version ${v}"
 
+##################################################
+# Use specific terragrunt version .terragrunt-version
+# without preinstalling
+##################################################
+echo "### Install latest:<regex> .terragrunt-version"
+cleanup || error_and_die "Cleanup failed?!"
+
+echo "0.40.0" > ./.terragrunt-version
+(
+  terragrunt --version || exit 1
+  check_version "0.40.0" || exit 1
+) || error_and_proceed "Installing .terragrunt-version ${v}"
 
 ##################################################
 # Install invalid specific version .terragrunt-version
