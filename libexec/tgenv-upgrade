@@ -7,24 +7,25 @@
 # $ git checkout master && git pull
 #
 ##########################################
-
+set -e
 [ -n "${TGENV_DEBUG}" ] && set -x
 source "${TGENV_ROOT}/libexec/helpers"
 
-TGFD=$HOME/.tgenv
-TGGB=$(git branch)
-TGGM=$(git -C $TGFD checkout main)
-TGGP=$(git pull)
-TGGL=$(git -C $TGFD log -1)
+TGENV_GITBRANCH=$(git branch)
+TGENV_GITCHECKOUTMAIN=$(git -C $TGENV_GITBRANCH checkout main)
+TGENV_GITPULL=$(git pull)
+TGENV_GITLOG=$(git -C $TGENV_GITBRANCH log -1)
+TGENV_GITSTASH=$(git stash)
 
 # If branch it was different of main executes the checkout them
-if [$TGGB != 'main']; 
+if [$TGENV_GITBRANCH != 'main']; 
 then
-   $TGGM
+   $TGENV_GITSTASH
+   $TGENV_GITCHECKOUTMAIN
 else
-   $TGGP
+   $TGENV_GITPULL
 fi;
 
-echo $TGGL
+echo $TGENV_GITLOG
 
 exit 0
