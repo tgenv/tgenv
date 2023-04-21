@@ -7,6 +7,7 @@
 # $ git checkout master && git pull
 #
 ##########################################
+
 set -e
 [ -n "${TGENV_DEBUG}" ] && set -x
 source "${TGENV_ROOT}/libexec/helpers"
