@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+##########################################
+#
+# This script just works like a software
+# version updater. It's a shortcut to
+# $ git checkout master && git pull
+#
+##########################################
+
+set -e
+[ -n "${TGENV_DEBUG}" ] && set -x
+source "${TGENV_ROOT}/libexec/helpers"
+
+TGENV_GITBRANCH=$(git branch)
+TGENV_GITCHECKOUTMAIN=$(git -C $TGENV_GITBRANCH checkout main)
+TGENV_GITPULL=$(git pull)
+TGENV_GITLOG=$(git -C $TGENV_GITBRANCH log -1)
+TGENV_GITSTASH=$(git stash)
+
+# If branch it was different of main executes the checkout them
+if [$TGENV_GITBRANCH != 'main']; 
+then
+   $TGENV_GITSTASH
+   $TGENV_GITCHECKOUTMAIN
+else
+   $TGENV_GITPULL
+fi;
+
+echo $TGENV_GITLOG
+
+exit 0
