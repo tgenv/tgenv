@@ -48,13 +48,19 @@ Currently tgenv supports the following OSes
 
 ### 1. Cloning the repository
 
-Check out tgenv into any path (here is `${HOME}/.tgenv`)
+Check out latest version of tgenv
 
   ```bash
-  $ git clone https://github.com/tgenv/tgenv.git ~/.tgenv
+  $ git clone --depth 1 --branch main https://github.com/tgenv/tgenv.git ~/.tgenv
   ```
 
-### 2. Export to PATH
+Or checkout tgenv at specific tag
+
+  ```bash
+  $ git clone --depth 1 --branch v1.0.0 https://github.com/tgenv/tgenv.git ~/.tgenv
+  ```
+
+### 2. Add tgenv to $PATH
 
 #### Bash
 
