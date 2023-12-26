@@ -1,8 +1,7 @@
 #!/usr/bin/env sh
 
 if [ "$(uname)" = 'Darwin' ]; then
-  echo "Skipping for MacOS"
-  exit 0
+  brew upgrade
 fi;
 
 . /etc/os-release
