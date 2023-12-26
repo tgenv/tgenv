@@ -20,6 +20,7 @@ jobs:
           - 'alpine:latest'
           - 'ubuntu:latest'
           - 'fedora:latest'
+          - 'macos:latest'
     steps:
       - uses: 'actions/checkout@v2'
         with:
