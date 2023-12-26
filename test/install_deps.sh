@@ -2,6 +2,6 @@
 set -uo pipefail;
 
 if [[ $(uname) == 'Darwin' ]] && [ $(which brew) ]; then
-  brew install grep;
+  brew install grep git curl;
   exit
 fi;
