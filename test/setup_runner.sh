@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 if [ "$(uname)" = 'Darwin' ]; then
-  brew install grep git curl
+    brew install git curl
 fi;
 
 . /etc/os-release
