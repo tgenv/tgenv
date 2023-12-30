@@ -5,6 +5,7 @@ function error_and_proceed() {
   echo -e "tgenv: ${0}: Test Failed: ${1}" >&2
 }
 
+# https://dev.to/ifenna__/adding-colors-to-bash-scripts-48g4
 RED="\033[0;31m"
 GREEN="\033[0;32m"
 YELLOW="\033[0;33m"
