@@ -11,19 +11,18 @@ YELLOW="\033[0;33m"
 BLUE="\033[0;34m"
 RESET="\033[0;39m"
 
-# export NO_COLOR=1
 
 function error_and_die() {
-  if [ "$NO_COLOR" -eq 1 ]; then
+  if [ "$TGENV_DISABLE_COLOR" -eq 1 ]; then
     echo -e "tgenv: $(basename ${0}): [ERROR] ${1}" >&2
   else
-    echo -e "tgenv: $(basename ${0}): ${BLUE}[ERROR] ${1}${RESET}" >&2
+    echo -e "tgenv: $(basename ${0}): ${RED}[ERROR] ${1}${RESET}" >&2
   fi
   exit 1
 }
 
 function warn_and_continue() {
-  if [ "$NO_COLOR" -eq 1 ]; then
+  if [ "${TGENV_DISABLE_COLOR}" -eq 1 ]; then
     echo -e "tgenv: $(basename ${0}): [WARN] ${1}" >&2
   else
     echo -e "tgenv: $(basename ${0}): ${YELLOW}[WARN] ${1}${RESET}" >&2
@@ -31,7 +30,7 @@ function warn_and_continue() {
 }
 
 function info() {
-  if [ "$NO_COLOR" -eq 1 ]; then
+  if [ "${TGENV_DISABLE_COLOR}" -eq 1 ]; then
     echo "[INFO] $1"
   else
     echo -e "${GREEN}[INFO] $1${RESET}"
@@ -40,7 +39,7 @@ function info() {
 
 function debug() {
   if [ -n "${TGENV_DEBUG}" ]; then
-    if [[ "${NO_COLOR}" -eq 1 ]]; then
+    if [[ "${TGENV_DISABLE_COLOR}" -eq 1 ]]; then
       echo -e "[DEBUG] ${1}"
     else
       echo -e "${BLUE}[DEBUG] ${1}${RESET}"
