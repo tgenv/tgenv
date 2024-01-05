@@ -3,4 +3,13 @@ set -e
 [ -n "${TGENV_DEBUG}" ] && set -x
 
 program="${0##*/}"
+
+export TGENV_DISABLE_COLOR=${TGENV_DISABLE_COLOR:-0}
+for arg in "$@"; do
+  if [ "$arg" = "-no-color" ]; then
+    export TGENV_DISABLE_COLOR=1
+    break
+  fi
+done
+
 exec "$(dirname "$(command -v "${0}")")/tgenv" exec "${@}"

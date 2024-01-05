@@ -216,6 +216,13 @@ Set the debug level for TGENV.
 * unset/empty-string: No debug output
 * set: Bash execution tracing
 
+#### `TGENV_DISABLE_COLOR`
+
+Integer (Default: "")
+
+Disable colored output for tgenv. This variable can either be set explicitly or will be set
+automatically if the `-no-color` flag is used with the terragrunt binary.
+
 ## Uninstalling :no_entry_sign:
 
 Just run:
