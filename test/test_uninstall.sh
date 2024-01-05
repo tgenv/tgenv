@@ -11,11 +11,11 @@ source $(dirname $0)/helpers.sh \
 echo "### Uninstall local versions"
 cleanup || error_and_die "Cleanup failed?!"
 
-v=0.35.2
+v=0.54.11
 (
   tgenv install ${v} || exit 1
   tgenv uninstall ${v} || exit 1
-  tgenv list | grep 0.35.2 && exit 1 || exit 0
+  tgenv list | grep 0.54.11 && exit 1 || exit 0
 ) || error_and_proceed "Uninstall of version ${v} failed"
 
 echo "### Uninstall latest version"
@@ -31,10 +31,10 @@ v=$(tgenv list-remote | head -n 1)
 echo "### Uninstall latest version with Regex"
 cleanup || error_and_die "Cleanup failed?!"
 
-v=$(tgenv list-remote | grep 0.33.2 | head -n 1)
+v=$(tgenv list-remote | grep 0.54.11 | head -n 1)
 (
-  tgenv install latest:^0.33 || exit 1
-  tgenv uninstall latest:^0.33 || exit 1
+  tgenv install latest:^0.54 || exit 1
+  tgenv uninstall latest:^0.54 || exit 1
   tgenv list | grep ${v} && exit 1 || exit 0
 ) || error_and_proceed "Uninstalling latest version ${v} with Regex"
 

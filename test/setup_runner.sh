@@ -1,8 +1,7 @@
 #!/usr/bin/env sh
 
 if [ "$(uname)" = 'Darwin' ]; then
-  echo "Skipping for MacOS"
-  exit 0
+    brew install git curl
 fi;
 
 . /etc/os-release
