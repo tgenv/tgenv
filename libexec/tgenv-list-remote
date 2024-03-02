@@ -9,14 +9,20 @@ if [ ${#} -ne 0 ];then
   exit 1
 fi
 
+tmp_list_all_versions_offline=$(mktemp /tmp/tgenv.XXXXXXXX)
+
 git ls-remote --tags https://github.com/gruntwork-io/terragrunt \
   | awk '{ print $2 }' \
   | cut -d "/" -f 3 \
   | sed 's/v//' \
-  | sort -Vr
+  | sort -Vr \
+  | tee "${tmp_list_all_versions_offline}"
 return_code=$?
 
 if [ $return_code != 0 ];then
+  [ -f "${tmp_list_all_versions_offline}" ] && rm -f "${tmp_list_all_versions_offline}"
   warn_and_continue "Failed to list tags for https://github.com/gruntwork-io/terragrunt"
   print=`cat ${TGENV_ROOT}/list_all_versions_offline`
+else
+  mv -f "${tmp_list_all_versions_offline}" "${TGENV_ROOT}/list_all_versions_offline"
 fi
