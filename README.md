@@ -241,8 +241,14 @@ And delete the previous export `$PATH` .
 
 ## Contributing
 
-This project requires contributions adhere to [shellcheck]() standards. The command can be found in [.github/workflows/tests.yml](.github/workflows/tests.yml)
+This project requires contributions adhere to [shellcheck](https://www.shellcheck.net/) standards. In CI/CD we require that there are no errors or warnings. The args we used are maintained in [.github/workflows/tests.yml](.github/workflows/tests.yml) but more or less amount to.
 
 ```bash
-shellcheck libexec/* bin/* -o "deprecate-which,require-variable-braces"
+shellcheck libexec/* bin/* test/* -S warning
+```
+
+I propose that its useful to run with some [additional checks](https://www.shellcheck.net/wiki/Optional) in our local dev environment.
+
+```bash
+shellcheck libexec/* bin/* test/* -o "deprecate-which,require-variable-braces" -S style
 ```
