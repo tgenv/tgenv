@@ -42,9 +42,9 @@ cleanup || error_and_die "Cleanup failed?!"
 
 v=0.36.3
 (
-  tgenv install ${v} || exit 1
-  tgenv use ${v} || exit 1
-  check_version ${v} || exit 1
+  tgenv install "${v}" || exit 1
+  tgenv use "${v}" || exit 1
+  check_version "${v}" || exit 1
 ) || error_and_proceed "Installing specific version ${v}"
 
 ##################################################
@@ -54,10 +54,10 @@ echo "### Install specific .terragrunt-version"
 cleanup || error_and_die "Cleanup failed?!"
 
 v=0.36.1
-echo ${v} > ./.terragrunt-version
+echo "${v}" > ./.terragrunt-version
 (
   tgenv install || exit 1
-  check_version ${v} || exit 1
+  check_version "${v}" || exit 1
 ) || error_and_proceed "Installing .terragrunt-version ${v}"
 
 ##################################################
@@ -94,7 +94,7 @@ cleanup || error_and_die "Cleanup failed?!"
 
 v=9.9.9
 expected_error_message="No versions matching '${v}' found in remote"
-[ -z "$(tgenv install ${v} 2>&1 | grep "${expected_error_message}")" ] \
+[ -z "$(tgenv install "${v}" 2>&1 | grep "${expected_error_message}")" ] \
   && error_and_proceed "Installing invalid version ${v}"
 
 ##################################################
@@ -105,7 +105,7 @@ cleanup || error_and_die "Cleanup failed?!"
 
 v="latest:word"
 expected_error_message="No versions matching '${v}' found in remote"
-[ -z "$(tgenv install ${v} 2>&1 | grep "${expected_error_message}")" ] \
+[ -z "$(tgenv install "${v}" 2>&1 | grep "${expected_error_message}")" ] \
   && error_and_proceed "Installing invalid version ${v}"
 
 if [ ${#errors[@]} -gt 0 ]; then

@@ -241,14 +241,10 @@ And delete the previous export `$PATH` .
 
 ## Contributing
 
-This project requires contributions adhere to [shellcheck](https://www.shellcheck.net/) standards. In CI/CD we require that there are no errors or warnings. The args we used are maintained in [.github/workflows/tests.yml](.github/workflows/tests.yml) but more or less amount to.
+This project requires contributions adhere to [shellcheck](https://www.shellcheck.net/) standards.
+
+The standards enforced by CI/CD are maintained here [.github/workflows/tests.yml](.github/workflows/tests.yml) but more or less amount to the following command if you want to run it locally
 
 ```bash
-shellcheck libexec/* bin/* test/* -S warning
-```
-
-I propose that its useful to run with some [additional checks](https://www.shellcheck.net/wiki/Optional) in our local dev environment.
-
-```bash
-shellcheck libexec/* bin/* test/* -o "deprecate-which,require-variable-braces" -S style
+shellcheck test/* bin/* libexec/* -o "require-variable-braces,quote-safe-variables" -S style -eSC2012 -eSC2015 -eSC1091 -eSC2143
 ```

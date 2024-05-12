@@ -6,7 +6,7 @@ declare -a errors
 source "${TGENV_ROOT}/libexec/helpers"
 
 [ "${TGENV_DEBUG:-0}" -gt 0 ] && set -x
-source "$(dirname "${0}")/helpers.sh" \
+source "$(dirname "$0")/helpers.sh" \
   || error_and_die "Failed to load test helpers: $(dirname "${0}")/helpers.sh"
 
 echo "### List local versions"

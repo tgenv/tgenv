@@ -13,8 +13,8 @@ cleanup || error_and_die "Cleanup failed?!"
 
 v=0.35.2
 (
-  tgenv install ${v} || exit 1
-  tgenv uninstall ${v} || exit 1
+  tgenv install "${v}" || exit 1
+  tgenv uninstall "${v}" || exit 1
   tgenv list | grep 0.35.2 && exit 1 || exit 0
 ) || error_and_proceed "Uninstall of version ${v} failed"
 
