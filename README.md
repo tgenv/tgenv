@@ -40,6 +40,7 @@ Currently tgenv supports the following OSes
     2. [TGENV_DEBUG](#tgenv_debug)
 5. [Uninstalling](#uninstalling-🚫)
 6. [License](#license-👍)
+7. [Contributing](#contributing)
 
 
 ---
@@ -237,3 +238,11 @@ And delete the previous export `$PATH` .
 ## LICENSE :thumbsup:
 - [tgenv itself](https://github.com/tgenv/tgenv/blob/master/LICENSE)
 - [tfenv ](https://github.com/kamatama41/tgenv/blob/master/LICENSE) : tfenv mainly uses tfenv's source code
+
+## Contributing
+
+This project requires contributions adhere to [shellcheck]() standards. The command can be found in [.github/workflows/tests.yml](.github/workflows/tests.yml)
+
+```bash
+shellcheck libexec/* bin/* -o "deprecate-which,require-variable-braces"
+```

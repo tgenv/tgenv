@@ -20,4 +20,4 @@ if cd "${BASH_SOURCE%/*}" 2>/dev/null && git remote -v 2>/dev/null | grep -q tge
   git_revision="${git_revision#v}"
 fi
 
-echo "tgenv ${git_revision:-$version}"
+echo "tgenv ${git_revision:-${version}}"

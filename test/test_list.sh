@@ -6,8 +6,8 @@ declare -a errors
 source "${TGENV_ROOT}/libexec/helpers"
 
 [ "${TGENV_DEBUG:-0}" -gt 0 ] && set -x
-source $(dirname $0)/helpers.sh \
-  || error_and_die "Failed to load test helpers: $(dirname $0)/helpers.sh"
+source "$(dirname "${0}")/helpers.sh" \
+  || error_and_die "Failed to load test helpers: $(dirname "${0}")/helpers.sh"
 
 echo "### List local versions"
 cleanup || error_and_die "Cleanup failed?!"
@@ -20,7 +20,7 @@ versions=(
   0.29.7
 )
 for v in "${versions[@]}"; do
-  tgenv install ${v} || error_and_proceed "Install of version ${v} failed"
+  tgenv install "${v}" || error_and_proceed "Install of version ${v} failed"
 done
 tgenv use 0.38.12
 

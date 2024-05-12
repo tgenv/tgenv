@@ -14,19 +14,19 @@ RESET="\033[0;39m"
 
 
 function error_and_die() {
-  if [[ "$TGENV_DISABLE_COLOR" -eq 1 ]]; then
-    echo -e "tgenv: $(basename ${0}): [ERROR] ${1}" >&2
+  if [[ "${TGENV_DISABLE_COLOR}" -eq 1 ]]; then
+    echo -e "tgenv: $(basename "${0}"): [ERROR] ${1}" >&2
   else
-    echo -e "tgenv: $(basename ${0}): ${RED}[ERROR] ${1}${RESET}" >&2
+    echo -e "tgenv: $(basename "${0}"): ${RED}[ERROR] ${1}${RESET}" >&2
   fi
   exit 1
 }
 
 function warn_and_continue() {
-  if [[ "${TGENV_DISABLE_COLOR}" -eq 1 ]]; then
-    echo -e "tgenv: $(basename ${0}): [WARN] ${1}" >&2
+  if [ "${TGENV_DISABLE_COLOR}" -eq 1 ]; then
+    echo -e "tgenv: $(basename "${0}"): [WARN] ${1}" >&2
   else
-    echo -e "tgenv: $(basename ${0}): ${YELLOW}[WARN] ${1}${RESET}" >&2
+    echo -e "tgenv: $(basename "${0}"): ${YELLOW}[WARN] ${1}${RESET}" >&2
   fi
 }
 

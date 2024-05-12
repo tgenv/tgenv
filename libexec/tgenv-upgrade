@@ -4,7 +4,7 @@
 #
 # This script just works like a software
 # version updater. It's a shortcut to
-# $ git checkout master && git pull
+# $ git checkout main && git pull
 #
 ##########################################
 
@@ -12,21 +12,21 @@ set -e
 [ -n "${TGENV_DEBUG}" ] && set -x
 source "${TGENV_ROOT}/libexec/helpers"
 
+# Consider using $(git rev-parse --abbrev-ref HEAD) instead
 TGENV_GITBRANCH=$(git branch)
-TGENV_GITCHECKOUTMAIN=$(git -C $TGENV_GITBRANCH checkout main)
+TGENV_GITCHECKOUTMAIN=$(git -C "${TGENV_GITBRANCH}" checkout main)
 TGENV_GITPULL=$(git pull)
-TGENV_GITLOG=$(git -C $TGENV_GITBRANCH log -1)
+TGENV_GITLOG=$(git -C "${TGENV_GITBRANCH}" log -1)
 TGENV_GITSTASH=$(git stash)
 
 # If branch it was different of main executes the checkout them
-if [$TGENV_GITBRANCH != 'main']; 
-then
-   $TGENV_GITSTASH
-   $TGENV_GITCHECKOUTMAIN
+if [ "${TGENV_GITBRANCH}" != 'main' ]; then
+   "${TGENV_GITSTASH}"
+   "${TGENV_GITCHECKOUTMAIN}"
 else
-   $TGENV_GITPULL
+   "${TGENV_GITPULL}"
 fi;
 
-echo $TGENV_GITLOG
+echo "${TGENV_GITLOG}"
 
 exit 0

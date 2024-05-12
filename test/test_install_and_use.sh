@@ -4,9 +4,9 @@ declare -a errors
 
 source "${TGENV_ROOT}/libexec/helpers"
 
-[ -n "$TGENV_DEBUG" ] && set -x
-source $(dirname $0)/helpers.sh \
-  || error_and_die "Failed to load test helpers: $(dirname $0)/helpers.sh"
+[ -n "${TGENV_DEBUG}" ] && set -x
+source "$(dirname "${0}")/helpers.sh" \
+  || error_and_die "Failed to load test helpers: $(dirname "${0}")/helpers.sh"
 
 ##################################################
 # Test install latest version
@@ -17,8 +17,8 @@ cleanup || error_and_die "Cleanup failed?!"
 v=$(tgenv list-remote | head -n 1)
 (
   tgenv install latest || exit 1
-  tgenv use ${v} || exit 1
-  check_version ${v} || exit 1
+  tgenv use "${v}" || exit 1
+  check_version "${v}" || exit 1
 ) || error_and_proceed "Installing latest version ${v}"
 
 ##################################################
@@ -31,7 +31,7 @@ v=$(tgenv list-remote | grep 0.37.4 | head -n 1)
 (
   tgenv install latest:^0.37 || exit 1
   tgenv use latest:^0.37 || exit 1
-  check_version ${v} || exit 1
+  check_version "${v}" || exit 1
 ) || error_and_proceed "Installing latest version ${v} with Regex"
 
 ##################################################
@@ -83,7 +83,7 @@ v=$(tgenv list-remote | grep -e '^0.38' | head -n 1)
 echo "latest:^0.38" > ./.terragrunt-version
 (
   tgenv install || exit 1
-  check_version ${v} || exit 1
+  check_version "${v}" || exit 1
 ) || error_and_proceed "Installing .terragrunt-version ${v}"
 
 ##################################################
