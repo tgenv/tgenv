@@ -19,7 +19,7 @@ jobs:
       - name: run shellcheck
         uses: sudo-bot/action-shellcheck@latest
         with:
-            cli-args: "test/* bin/* libexec/* -o "require-variable-braces,quote-safe-variables" -S style -eSC2012 -eSC2015 -eSC1091 -eSC2143"
+            cli-args: "test/* bin/* libexec/*"
 
   test-pull-requests-docker:
     if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main')

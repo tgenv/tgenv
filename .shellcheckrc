@@ -1,0 +1,21 @@
+enable=require-variable-braces
+enables=quote-safe-variables
+
+# Disable SC1091: Not following (<REASON>)
+#
+# https://www.shellcheck.net/wiki/SC1091
+disable=SC1091
+
+# Disable SC2012: Use find instead of ls to better handle non-alphanumeric filenames.
+# https://www.shellcheck.net/wiki/SC2012
+# Notes: We should revisit this one maybe
+disable=SC2012
+
+# Disable SC2015: Note that A && B || C is not if-then-else. C may run when A is true.
+# https://www.shellcheck.net/wiki/SC2015
+disable=SC2015
+
+# https://www.shellcheck.net/wiki/SC2143
+# Use grep -q instead of comparing output with [ -n .. ].
+# Notes: We should revisit this one maybe
+disable=SC2143

@@ -241,10 +241,19 @@ And delete the previous export `$PATH` .
 
 ## Contributing
 
-This project requires contributions adhere to [shellcheck](https://www.shellcheck.net/) standards.
+This project requires contributions adhere to [shellcheck](https://www.shellcheck.net/) standards which are configured in [.shellcheckrc](.shellcheckrc).
 
-The standards enforced by CI/CD are maintained here [.github/workflows/tests.yml](.github/workflows/tests.yml) but more or less amount to the following command if you want to run it locally
+Shell check can be run locally in your CLI. Refer to the shell check README for [installation instructions](https://github.com/koalaman/shellcheck?tab=readme-ov-file#installing).
 
 ```bash
-shellcheck test/* bin/* libexec/* -o "require-variable-braces,quote-safe-variables" -S style -eSC2012 -eSC2015 -eSC1091 -eSC2143
+shellcheck test/* bin/* libexec/*
 ```
+
+### Auto Fix
+
+Shellcheck can output diffs which can then be automatically applied to the code. See for details.
+
+```
+shellcheck -f diff my-script.sh | patch
+```
+
