@@ -22,24 +22,22 @@ Currently tgenv supports the following OSes
 
 ## Summary :bookmark: 
 
-1. [Installation](#installation-🔧)
-    1. [Cloning the repository](#1-cloning-the-repository)
-    2. [Export PATH](#2-export-to-path)
-         1. [Bash](#bash)
-         2. [ZSH](#zsh)
-2. [Usage](#usage-▶️)
-    1. [tgenv install](#tgenv-install)
-    2. [tgenv use](#tgenv-use)
-    3. [tgenv uninstall](#tgenv-uninstall)
-    4. [tgenv list](#tgenv-list)
-    5. [tgenv list-remote](#tgenv-list-remote)
-    5. [tgenv upgrade](#tgenv-upgrade)
-3. [The terragrunt-version file](#the-terragrunt-version-file-📄)
-4. [Environment Variables](#environment-variables-📦)
-    1. [TGENV_AUTO_INSTALL](#tgenv_auto_install)
-    2. [TGENV_DEBUG](#tgenv_debug)
-5. [Uninstalling](#uninstalling-🚫)
-6. [License](#license-👍)
+ * [Installation](#installation-wrench) :wrench:
+   * [Cloning the repository](#1-cloning-the-repository)
+   * [Export PATH](#2-export-to-path)
+ * [Usage](#usage-arrow_forward) :arrow_forward:
+   * [tgenv install](#tgenv-install)
+   * [tgenv use](#tgenv-use)
+   * [tgenv uninstall](#tgenv-uninstall)
+   * [tgenv list](#tgenv-list)
+   * [tgenv list-remote](#tgenv-list-remote)
+   * [tgenv upgrade](#tgenv-upgrade)
+ * [The terragrunt-version file](#the-terragrunt-version-file-page_facing_up) :page_facing_up:
+ * [Environment Variables](#environment-variables-package) :package:
+   * [TGENV_AUTO_INSTALL](#tgenv_auto_install)
+   * [TGENV_DEBUG](#tgenv_debug)
+ * [Uninstalling](#uninstalling-no_entry_sign) :no_entry_sign:
+ * [License](#license-thumbsup) :thumbsup:
 
 
 ---
@@ -94,9 +92,10 @@ $ omz reload
 
 ### tgenv install
 
-Install a specific version of terragrunt  
-`latest` is a syntax to install latest version
-`latest:<regex>` is a syntax to install latest version matching regex (used by grep -e)
+Install a specific version of terragrunt
+
+* `latest` is a syntax to install latest version
+* `latest:<regex>` is a syntax to install latest version matching regex (used by grep -e)
 
 ```bash
 $ tgenv install 0.40.2
@@ -195,7 +194,7 @@ $ terragrunt --version
 terragrunt v0.10.3
 ```
 
-### Environment Variables :package:
+## Environment Variables :package:
 
 #### `TGENV_AUTO_INSTALL`
 
