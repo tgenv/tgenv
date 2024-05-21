@@ -39,7 +39,6 @@ Currently tgenv supports the following OSes
  * [Uninstalling](#uninstalling-no_entry_sign) :no_entry_sign:
  * [License](#license-thumbsup) :thumbsup:
 
-
 ---
 
 ## Installation :wrench:
@@ -236,3 +235,22 @@ And delete the previous export `$PATH` .
 ## LICENSE :thumbsup:
 - [tgenv itself](https://github.com/tgenv/tgenv/blob/master/LICENSE)
 - [tfenv ](https://github.com/kamatama41/tgenv/blob/master/LICENSE) : tfenv mainly uses tfenv's source code
+
+## Contributing
+
+This project requires contributions adhere to [shellcheck](https://www.shellcheck.net/) standards which are configured in [.shellcheckrc](.shellcheckrc).
+
+Shell check can be run locally in your CLI. Refer to the shell check README for [installation instructions](https://github.com/koalaman/shellcheck?tab=readme-ov-file#installing).
+
+```bash
+shellcheck test/* bin/* libexec/*
+```
+
+### Auto Fix
+
+Shellcheck can output diffs which can then be automatically applied to the code. See for details.
+
+```
+shellcheck -f diff my-script.sh | patch
+```
+

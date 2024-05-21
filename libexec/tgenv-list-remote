@@ -19,10 +19,10 @@ git ls-remote --tags https://github.com/gruntwork-io/terragrunt \
   | tee "${tmp_list_all_versions_offline}"
 return_code=$?
 
-if [ $return_code != 0 ];then
+if [ "${return_code}" != 0 ];then
   [ -f "${tmp_list_all_versions_offline}" ] && rm -f "${tmp_list_all_versions_offline}"
   warn_and_continue "Failed to list tags for https://github.com/gruntwork-io/terragrunt"
-  print=`cat ${TGENV_ROOT}/list_all_versions_offline`
+#   print=`cat ${TGENV_ROOT}/list_all_versions_offline`
 else
   mv -f "${tmp_list_all_versions_offline}" "${TGENV_ROOT}/list_all_versions_offline"
 fi

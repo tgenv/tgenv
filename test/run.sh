@@ -5,18 +5,21 @@ if [ -n "${TGENV_DEBUG}" ]; then
   set -x
 fi
 
-export TGENV_ROOT=$(cd $(dirname ${0})/.. && pwd)
+TGENV_ROOT="$(cd "$(dirname "${0}")"/.. && pwd)"
+export TGENV_ROOT
+
 export PATH="${TGENV_ROOT}/bin:${PATH}"
 
 errors=()
 if [ ${#} -ne 0 ];then
-  targets="${@}"
+  targets="$*"
 else
-  targets=$(\ls $(dirname ${0}) | grep 'test_')
+  # shellcheck disable=SC2010
+  targets=$(\ls "$(dirname "${0}")" | grep 'test_')
 fi
 
 for t in ${targets}; do
-  bash $(dirname ${0})/${t} || errors+=( ${t} )
+  bash "$(dirname "${0}")/${t}" || errors+=( "${t}" )
 done
 
 if [ ${#errors[@]} -ne 0 ];then

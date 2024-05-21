@@ -4,9 +4,9 @@ declare -a errors
 
 source "${TGENV_ROOT}/libexec/helpers"
 
-[ -n "$TGENV_DEBUG" ] && set -x
-source $(dirname $0)/helpers.sh \
-  || error_and_die "Failed to load test helpers: $(dirname $0)/helpers.sh"
+[ -n "${TGENV_DEBUG}" ] && set -x
+source "$(dirname "${0}")/helpers.sh" \
+  || error_and_die "Failed to load test helpers: $(dirname "${0}")/helpers.sh"
 
 ##################################################
 # Test install latest version
@@ -17,8 +17,8 @@ cleanup || error_and_die "Cleanup failed?!"
 v=$(tgenv list-remote | head -n 1)
 (
   tgenv install latest || exit 1
-  tgenv use ${v} || exit 1
-  check_version ${v} || exit 1
+  tgenv use "${v}" || exit 1
+  check_version "${v}" || exit 1
 ) || error_and_proceed "Installing latest version ${v}"
 
 ##################################################
@@ -31,7 +31,7 @@ v=$(tgenv list-remote | grep 0.37.4 | head -n 1)
 (
   tgenv install latest:^0.37 || exit 1
   tgenv use latest:^0.37 || exit 1
-  check_version ${v} || exit 1
+  check_version "${v}" || exit 1
 ) || error_and_proceed "Installing latest version ${v} with Regex"
 
 ##################################################
@@ -42,9 +42,9 @@ cleanup || error_and_die "Cleanup failed?!"
 
 v=0.36.3
 (
-  tgenv install ${v} || exit 1
-  tgenv use ${v} || exit 1
-  check_version ${v} || exit 1
+  tgenv install "${v}" || exit 1
+  tgenv use "${v}" || exit 1
+  check_version "${v}" || exit 1
 ) || error_and_proceed "Installing specific version ${v}"
 
 ##################################################
@@ -54,10 +54,10 @@ echo "### Install specific .terragrunt-version"
 cleanup || error_and_die "Cleanup failed?!"
 
 v=0.36.1
-echo ${v} > ./.terragrunt-version
+echo "${v}" > ./.terragrunt-version
 (
   tgenv install || exit 1
-  check_version ${v} || exit 1
+  check_version "${v}" || exit 1
 ) || error_and_proceed "Installing .terragrunt-version ${v}"
 
 ##################################################
@@ -83,7 +83,7 @@ v=$(tgenv list-remote | grep -e '^0.38' | head -n 1)
 echo "latest:^0.38" > ./.terragrunt-version
 (
   tgenv install || exit 1
-  check_version ${v} || exit 1
+  check_version "${v}" || exit 1
 ) || error_and_proceed "Installing .terragrunt-version ${v}"
 
 ##################################################
@@ -94,7 +94,7 @@ cleanup || error_and_die "Cleanup failed?!"
 
 v=9.9.9
 expected_error_message="No versions matching '${v}' found in remote"
-[ -z "$(tgenv install ${v} 2>&1 | grep "${expected_error_message}")" ] \
+[ -z "$(tgenv install "${v}" 2>&1 | grep "${expected_error_message}")" ] \
   && error_and_proceed "Installing invalid version ${v}"
 
 ##################################################
@@ -105,7 +105,7 @@ cleanup || error_and_die "Cleanup failed?!"
 
 v="latest:word"
 expected_error_message="No versions matching '${v}' found in remote"
-[ -z "$(tgenv install ${v} 2>&1 | grep "${expected_error_message}")" ] \
+[ -z "$(tgenv install "${v}" 2>&1 | grep "${expected_error_message}")" ] \
   && error_and_proceed "Installing invalid version ${v}"
 
 if [ ${#errors[@]} -gt 0 ]; then

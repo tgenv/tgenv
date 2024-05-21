@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -uo pipefail;
 
-if [[ $(uname) == 'Darwin' ]] && [ $(which brew) ]; then
+if [[ $(uname) == 'Darwin' ]] && [ "$(command -v brew)" ]; then
   brew install grep;
   exit
 fi;

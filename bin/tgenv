@@ -11,7 +11,7 @@ readlink_f() {
   local file_name
 
   while [ "${target_file}" != "" ]; do
-    cd "$(dirname ${target_file})"
+    cd "$(dirname "${target_file}")"
     file_name="$(basename "${target_file}")"
     target_file="$(readlink "${file_name}")"
   done
@@ -29,9 +29,12 @@ PATH="${TGENV_ROOT}/libexec:${PATH}"
 export PATH
 export TGENV_DIR="${PWD}"
 
+# shellcheck disable=SC2120
 abort() {
-  { if [ "${#}" -eq 0 ]; then cat -
-    else echo "tgenv: ${*}"
+  { if [ "${#}" -eq 0 ]; then
+        cat -
+    else
+        echo "tgenv: ${*}"
     fi
   } >&2
   exit 1
