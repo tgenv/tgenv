@@ -14,28 +14,15 @@ source "${TGENV_ROOT}/libexec/helpers"
 debug "Changing directory to ${TGENV_ROOT}"
 cd "${TGENV_ROOT}"
 
-# Default branch should always be 'main'. Should we just hard code this?
-DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
-CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-debug "Current branch is ${CURRENT_BRANCH}"
+info "Stashing any changes and checking out main branch. Uncommitted changes can be restored after the update with 'git stash apply'"
 
-UNCOMMITTED_CHANGES_ON_BRANCH=$(git status --porcelain)
-if [ -n "${UNCOMMITTED_CHANGES_ON_BRANCH}" ]; then
-    warn_and_continue "Current branch contains uncommitted changes. These will be stashed."
-    git stash
-fi
-
-# If branch it was different of main executes the checkout them
-if [ "${CURRENT_BRANCH}" != "${DEFAULT_BRANCH}" ]; then
-   # NOTE(simonm) wondering whether the default behavior should be for us to do this for the user
-   # or just to exit and tell them that they need to be on a clean branch first.
-   warn_and_continue "Current branch is not main. Checking out main."
-   git checkout "${DEFAULT_BRANCH}"
-fi
-
+# NOTE(simonm) stash and checkout are idempotent so the simplest option is to
+# do these operations every time.
+git stash
+git checkout main
 git pull
+git log -1
 
 debug "Changing directory to ${INITIAL_DIR}"
 cd "${INITIAL_DIR}"
 
-git -C log -1
