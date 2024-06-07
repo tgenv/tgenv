@@ -1,32 +1,36 @@
-#!/usr/bin/env bash
+# #!/usr/bin/env bash
 
 ##########################################
 #
 # This script just works like a software
 # version updater. It's a shortcut to
-# $ git checkout main && git pull
+# $ git checkout master && git pull
 #
 ##########################################
 
 set -e
 [ -n "${TGENV_DEBUG}" ] && set -x
+initial_dir=$(pwd)
 source "${TGENV_ROOT}/libexec/helpers"
 
-# Consider using $(git rev-parse --abbrev-ref HEAD) instead
-TGENV_GITBRANCH=$(git branch)
-TGENV_GITCHECKOUTMAIN=$(git -C "${TGENV_GITBRANCH}" checkout main)
-TGENV_GITPULL=$(git pull)
-TGENV_GITLOG=$(git -C "${TGENV_GITBRANCH}" log -1)
-TGENV_GITSTASH=$(git stash)
+debug "Changing directory to ${TGENV_ROOT}"
+cd "${TGENV_ROOT}"
+
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+debug "Current branch is ${current_branch}"
 
 # If branch it was different of main executes the checkout them
-if [ "${TGENV_GITBRANCH}" != 'main' ]; then
-   "${TGENV_GITSTASH}"
-   "${TGENV_GITCHECKOUTMAIN}"
-else
-   "${TGENV_GITPULL}"
-fi;
+if [ "${current_branch}" != 'main' ]; then
+   # NOTE(simonm) wondering whether the default behavior should be for us to do this for the user
+   # or just to exit and tell them that they need to be on a clean branch first.
+   warn_and_continue "Current branch is not main. Stashing changes and checking out main"
+   git -q stash
+   git -q checkout main
+fi
 
-echo "${TGENV_GITLOG}"
+git -q pull
 
-exit 0
+debug "Changing directory to ${initial_dir}"
+cd "${initial_dir}"
+
+git -C log -1
