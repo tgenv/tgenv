@@ -1,36 +1,41 @@
-# #!/usr/bin/env bash
+#!/usr/bin/env bash
 
 ##########################################
-#
 # This script just works like a software
 # version updater. It's a shortcut to
-# $ git checkout master && git pull
-#
+# $ git checkout main && git pull
 ##########################################
 
 set -e
 [ -n "${TGENV_DEBUG}" ] && set -x
-initial_dir=$(pwd)
+INITIAL_DIR=$(pwd)
 source "${TGENV_ROOT}/libexec/helpers"
 
 debug "Changing directory to ${TGENV_ROOT}"
 cd "${TGENV_ROOT}"
 
-current_branch=$(git rev-parse --abbrev-ref HEAD)
-debug "Current branch is ${current_branch}"
+# Default branch should always be 'main'. Should we just hard code this?
+DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+debug "Current branch is ${CURRENT_BRANCH}"
 
-# If branch it was different of main executes the checkout them
-if [ "${current_branch}" != 'main' ]; then
-   # NOTE(simonm) wondering whether the default behavior should be for us to do this for the user
-   # or just to exit and tell them that they need to be on a clean branch first.
-   warn_and_continue "Current branch is not main. Stashing changes and checking out main"
-   git -q stash
-   git -q checkout main
+UNCOMMITTED_CHANGES_ON_BRANCH=$(git status --porcelain)
+if [ -n "${UNCOMMITTED_CHANGES_ON_BRANCH}" ]; then
+    warn_and_continue "Current branch contains uncommitted changes. These will be stashed."
+    git stash
 fi
 
-git -q pull
+# If branch it was different of main executes the checkout them
+if [ "${CURRENT_BRANCH}" != "${DEFAULT_BRANCH}" ]; then
+   # NOTE(simonm) wondering whether the default behavior should be for us to do this for the user
+   # or just to exit and tell them that they need to be on a clean branch first.
+   warn_and_continue "Current branch is not main. Checking out main."
+   git checkout "${DEFAULT_BRANCH}"
+fi
 
-debug "Changing directory to ${initial_dir}"
-cd "${initial_dir}"
+git pull
+
+debug "Changing directory to ${INITIAL_DIR}"
+cd "${INITIAL_DIR}"
 
 git -C log -1
