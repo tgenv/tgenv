@@ -1,32 +1,28 @@
 #!/usr/bin/env bash
 
 ##########################################
-#
 # This script just works like a software
 # version updater. It's a shortcut to
 # $ git checkout main && git pull
-#
 ##########################################
 
 set -e
 [ -n "${TGENV_DEBUG}" ] && set -x
+INITIAL_DIR=$(pwd)
 source "${TGENV_ROOT}/libexec/helpers"
 
-# Consider using $(git rev-parse --abbrev-ref HEAD) instead
-TGENV_GITBRANCH=$(git branch)
-TGENV_GITCHECKOUTMAIN=$(git -C "${TGENV_GITBRANCH}" checkout main)
-TGENV_GITPULL=$(git pull)
-TGENV_GITLOG=$(git -C "${TGENV_GITBRANCH}" log -1)
-TGENV_GITSTASH=$(git stash)
+debug "Changing directory to ${TGENV_ROOT}"
+cd "${TGENV_ROOT}"
 
-# If branch it was different of main executes the checkout them
-if [ "${TGENV_GITBRANCH}" != 'main' ]; then
-   "${TGENV_GITSTASH}"
-   "${TGENV_GITCHECKOUTMAIN}"
-else
-   "${TGENV_GITPULL}"
-fi;
+info "Stashing any changes and checking out main branch. Uncommitted changes can be restored after the update with 'git stash apply'"
 
-echo "${TGENV_GITLOG}"
+# NOTE(simonm) stash and checkout are idempotent so the simplest option is to
+# do these operations every time.
+git stash
+git checkout main
+git pull
+git log -1
 
-exit 0
+debug "Changing directory to ${INITIAL_DIR}"
+cd "${INITIAL_DIR}"
+
