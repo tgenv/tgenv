@@ -7,7 +7,7 @@ fi;
 
 . /etc/os-release
 if [ "${ID}" = "alpine" ]; then
-    apk add bash git curl
+    apk add bash git curl coreutils
 fi
 
 if [ "${ID}" = "ubuntu" ]; then
