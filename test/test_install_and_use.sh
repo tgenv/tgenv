@@ -87,6 +87,26 @@ echo "latest:^0.38" > ./.terragrunt-version
 ) || error_and_proceed "Installing .terragrunt-version ${v}"
 
 ##################################################
+# Test install from ${TGENV_ROOT}/version (global version file)
+##################################################
+echo "### Install specific version from \${TGENV_ROOT}/version"
+cleanup || error_and_die "Cleanup failed?!"
+
+v=0.36.1
+_global_version_file="${TGENV_ROOT}/version"
+_global_version_backup="$(cat "${_global_version_file}" 2>/dev/null || true)"
+echo "${v}" > "${_global_version_file}"
+(
+  tgenv install || exit 1
+  check_version "${v}" || exit 1
+) || error_and_proceed "Installing version from \${TGENV_ROOT}/version ${v}"
+if [ -n "${_global_version_backup}" ]; then
+  echo "${_global_version_backup}" > "${_global_version_file}"
+else
+  rm -f "${_global_version_file}"
+fi
+
+##################################################
 # Install invalid specific version .terragrunt-version
 ##################################################
 echo "### Install invalid specific version .terragrunt-version"

@@ -9,9 +9,7 @@ declare version_requested version regex
 
 if [ -z "${1}" ]; then
   version_file="$(tgenv-version-file)"
-  if [ "${version_file}" != "${TGENV_ROOT}/version" ]; then
-    version_requested="$(cat "${version_file}" || true)"
-  fi
+  version_requested="$(cat "${version_file}" || true)"
 else
   version_requested="${1}"
 fi
