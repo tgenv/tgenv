@@ -13,18 +13,18 @@ echo "### List local versions"
 cleanup || error_and_die "Cleanup failed?!"
 
 versions=(
-  0.54.11
+  1.0.5
   0.50.17
   0.49.1
 )
 for v in "${versions[@]}"; do
   tgenv install "${v}" || error_and_proceed "Install of version ${v} failed"
 done
-tgenv use 0.54.11
+tgenv use 1.0.5
 
 result="$(tgenv list)";
 expected="$(cat << EOS
-* 0.54.11 (set by $(tgenv version-file))
+* 1.0.5 (set by $(tgenv version-file))
   0.50.17
   0.49.1
 EOS

@@ -27,10 +27,10 @@ v=$(tgenv list-remote | head -n 1)
 echo "### Install latest version with Regex"
 cleanup || error_and_die "Cleanup failed?!"
 
-v=$(tgenv list-remote | grep 0.54.11 | head -n 1)
+v=$(tgenv list-remote | grep -E '^1\.0\.' | head -n 1)
 (
-  tgenv install latest:^0.54 || exit 1
-  tgenv use latest:^0.54 || exit 1
+  tgenv install latest:^1.0 || exit 1
+  tgenv use latest:^1.0 || exit 1
   check_version "${v}" || exit 1
 ) || error_and_proceed "Installing latest version ${v} with Regex"
 
@@ -40,7 +40,7 @@ v=$(tgenv list-remote | grep 0.54.11 | head -n 1)
 echo "### Install specific version"
 cleanup || error_and_die "Cleanup failed?!"
 
-v=0.54.10
+v=1.0.4
 (
   tgenv install "${v}" || exit 1
   tgenv use "${v}" || exit 1
@@ -53,7 +53,7 @@ v=0.54.10
 echo "### Install specific .terragrunt-version"
 cleanup || error_and_die "Cleanup failed?!"
 
-v=0.54.11
+v=1.0.5
 echo "${v}" > ./.terragrunt-version
 (
   tgenv install || exit 1
