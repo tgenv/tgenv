@@ -1,0 +1,68 @@
+---
+id: installation
+title: Installation
+sidebar_position: 2
+---
+
+# Installation
+
+TGEnv is distributed as a Git repository. Installing it is a two-step process:
+clone the repository and expose its `bin` directory through your `PATH`.
+
+## 1. Clone the Repository
+
+Clone the latest version of TGEnv into your home directory:
+
+```bash
+git clone --depth 1 --branch main https://github.com/tgenv/tgenv.git ~/.tgenv
+```
+
+To pin a specific release, replace `main` with a tag name:
+
+```bash
+git clone --depth 1 --branch v1.0.0 https://github.com/tgenv/tgenv.git ~/.tgenv
+```
+
+## 2. Add TGEnv to Your PATH
+
+### Bash
+
+Append `~/.tgenv/bin` to your `PATH`:
+
+```bash
+echo 'export PATH="$HOME/.tgenv/bin:$PATH"' >> ~/.bash_profile
+```
+
+Reload your shell or `source` the file so the change takes effect.
+
+Alternatively, on Linux and macOS you can symlink the binaries into a directory
+already on your `PATH`, for example `/usr/local/bin`:
+
+```bash
+ln -s ~/.tgenv/bin/* /usr/local/bin
+```
+
+### Zsh
+
+Append `~/.tgenv/bin` to your `PATH`:
+
+```bash
+echo 'export PATH="$HOME/.tgenv/bin:$PATH"' >> ~/.zshrc
+```
+
+If you use [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh), reload your shell:
+
+```bash
+omz reload
+```
+
+## Verify the Installation
+
+Run TGEnv without arguments to confirm it is on your `PATH`:
+
+```bash
+tgenv
+```
+
+You should see the version banner followed by the help text. From this point on
+you can [install a Terragrunt version](./usage/install).
