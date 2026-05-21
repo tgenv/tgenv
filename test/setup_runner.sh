@@ -2,6 +2,7 @@
 
 if [ "$(uname)" = 'Darwin' ]; then
     brew install git curl
+    exit 0
 fi;
 
 . /etc/os-release

@@ -14,9 +14,7 @@ cleanup || error_and_die "Cleanup failed?!"
 
 versions=(
   0.54.11
-  0.54.10
-  0.54.9
-  0.54.8
+  0.50.17
   0.49.1
 )
 for v in "${versions[@]}"; do
