@@ -1,7 +1,5 @@
 ---
-id: list-remote
 title: tgenv list-remote
-sidebar_position: 4
 ---
 
 # tgenv list-remote

@@ -1,7 +1,5 @@
 ---
-id: architecture
 title: Architecture
-sidebar_position: 6
 ---
 
 # Architecture
@@ -28,6 +26,14 @@ tgenv/
 │   ├── tgenv-version-name
 │   ├── tgenv-help
 │   └── tgenv---version
+├── docs/
+│   ├── mkdocs.yml     # MkDocs site configuration and navigation
+│   ├── docs/          # Markdown documentation pages
+│   │   ├── index.md
+│   │   ├── installation.md
+│   │   ├── usage/
+│   │   └── ...
+│   └── static/        # Static assets (logo, favicon)
 ├── list_all_versions_offline   # Cached remote release list
 ├── test/                       # Bash test harness
 └── assets/                     # Logo and branding

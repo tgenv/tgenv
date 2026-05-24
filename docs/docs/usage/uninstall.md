@@ -1,7 +1,5 @@
 ---
-id: uninstall
 title: tgenv uninstall
-sidebar_position: 5
 ---
 
 # tgenv uninstall
@@ -35,5 +33,5 @@ tgenv uninstall latest:^0.9
 1. TGEnv selects the highest installed version matching the constraint.
 2. The directory `~/.tgenv/versions/<version>` is removed.
 3. The active version file is **not** updated automatically. If you uninstall
-   the version currently in use, run [`tgenv use`](./use) afterwards to switch
+   the version currently in use, run [`tgenv use`](./use.md) afterwards to switch
    to a version that still exists.

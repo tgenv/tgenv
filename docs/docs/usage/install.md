@@ -1,7 +1,5 @@
 ---
-id: install
 title: tgenv install
-sidebar_position: 1
 ---
 
 # tgenv install

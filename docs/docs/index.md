@@ -1,8 +1,5 @@
 ---
-id: intro
 title: Introduction
-sidebar_position: 1
-slug: /intro
 ---
 
 # Introduction
@@ -51,6 +48,6 @@ Continuous integration runs the test suite on Alpine, Ubuntu, Fedora and macOS.
 
 ## Next Steps
 
-- [Install TGEnv](./installation)
-- [Install your first Terragrunt version](./usage/install)
-- [Pin a version per project](./terragrunt-version-file)
+- [Install TGEnv](./installation.md)
+- [Install your first Terragrunt version](./usage/install.md)
+- [Pin a version per project](./terragrunt-version-file.md)

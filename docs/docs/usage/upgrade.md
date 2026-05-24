@@ -1,7 +1,5 @@
 ---
-id: upgrade
 title: tgenv upgrade
-sidebar_position: 6
 ---
 
 # tgenv upgrade

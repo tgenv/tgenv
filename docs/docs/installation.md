@@ -1,7 +1,5 @@
 ---
-id: installation
 title: Installation
-sidebar_position: 2
 ---
 
 # Installation
@@ -65,4 +63,4 @@ tgenv
 ```
 
 You should see the version banner followed by the help text. From this point on
-you can [install a Terragrunt version](./usage/install).
+you can [install a Terragrunt version](./usage/install.md).

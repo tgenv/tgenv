@@ -1,7 +1,5 @@
 ---
-id: contributing
 title: Contributing
-sidebar_position: 8
 ---
 
 # Contributing
@@ -63,6 +61,47 @@ A pull request must pass all three jobs before it can be merged.
 3. Run ShellCheck and the test suite locally.
 4. Open a pull request describing the motivation and the change. The repository
    ships a pull request template — please fill it in.
+
+## Contributing to the Documentation
+
+The documentation site is built with [MkDocs](https://www.mkdocs.org/) using
+the [Material theme](https://squidfunk.github.io/mkdocs-material/).
+
+### Requirements
+
+- Python 3.x
+- mkdocs-material
+
+```bash
+pip install mkdocs-material
+```
+
+### Running locally
+
+```bash
+cd docs
+mkdocs serve
+```
+
+The dev server starts at `http://localhost:8000` with live reload.
+
+### Building
+
+```bash
+cd docs
+mkdocs build
+```
+
+The static output is placed under `docs/site/`.
+
+### Structure
+
+- `docs/mkdocs.yml` — site configuration, theme and navigation.
+- `docs/docs/` — Markdown pages (one file per topic).
+- `docs/static/img/` — logo and favicon.
+
+Navigation order is declared in the `nav:` section of `mkdocs.yml`. When
+adding a new page, register it there as well.
 
 ## Reporting Bugs
 

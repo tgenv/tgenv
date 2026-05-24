@@ -1,46 +1,52 @@
 # TGEnv Documentation
 
-This directory contains the [Docusaurus](https://docusaurus.io/) site that
-powers the public TGEnv documentation hosted on GitHub Pages.
+This directory contains the [MkDocs](https://www.mkdocs.org/) site (using the
+[Material theme](https://squidfunk.github.io/mkdocs-material/)) that powers the
+public TGEnv documentation hosted on GitHub Pages.
+
+## Requirements
+
+- Python 3.x
+- [mkdocs-material](https://squidfunk.github.io/mkdocs-material/)
+
+```bash
+pip install mkdocs-material
+```
 
 ## Local Development
 
 ```bash
 cd docs
-npm install
-npm start
+mkdocs serve
 ```
 
-The dev server starts at `http://localhost:3000/tgenv/` with hot reload.
+The dev server starts at `http://localhost:8000` with live reload.
 
 ## Build
 
 ```bash
-npm run build
+mkdocs build
 ```
 
-The static site is emitted under `docs/build/`.
+The static site is emitted under `docs/site/`.
 
 ## Deployment
 
 Deployment is automated by `.github/workflows/deploy-docs.yml`. Every push to
 `main` that touches the `docs/` directory builds the site and publishes it to
-the `gh-pages` branch, which GitHub Pages serves at
-`https://tgenv.github.io/tgenv/`.
+GitHub Pages at `https://tgenv.github.io/tgenv/`.
 
 To trigger a manual deploy from your workstation (requires push permission on
 the repository), run:
 
 ```bash
-GIT_USER=<your-github-username> npm run deploy
+mkdocs gh-deploy --force
 ```
 
 ## Authoring Content
 
 - Documentation pages live under `docs/`.
-- The sidebar layout is declared in `sidebars.js`.
-- Theme tokens and the gradient palette are defined in `src/css/custom.css`.
-- The landing page lives in `src/pages/index.js`.
+- The site structure and navigation are declared in `mkdocs.yml`.
 - The logo is `static/img/logo.png`.
 
 All written content must stay in English (`en-US`) and avoid emojis.

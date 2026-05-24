@@ -1,7 +1,5 @@
 ---
-id: terragrunt-version-file
 title: The .terragrunt-version File
-sidebar_position: 4
 ---
 
 # The .terragrunt-version File
@@ -50,7 +48,7 @@ echo latest > .terragrunt-version
 
 If the version declared by `.terragrunt-version` is not installed locally,
 TGEnv installs it automatically the first time it is needed. This behavior is
-controlled by the [`TGENV_AUTO_INSTALL`](./environment-variables#tgenv_auto_install)
+controlled by the [`TGENV_AUTO_INSTALL`](./environment-variables.md#tgenv_auto_install)
 environment variable.
 
 ## Recommended Workflow

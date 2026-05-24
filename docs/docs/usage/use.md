@@ -1,7 +1,5 @@
 ---
-id: use
 title: tgenv use
-sidebar_position: 2
 ---
 
 # tgenv use
@@ -41,5 +39,5 @@ tgenv use latest:^0.10
 3. `terragrunt --version` is invoked to validate the switch.
 
 If no installed version matches the request, the command fails with a clear
-error message. Use [`tgenv install`](./install) first to download the desired
+error message. Use [`tgenv install`](./install.md) first to download the desired
 version.

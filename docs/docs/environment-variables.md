@@ -1,7 +1,5 @@
 ---
-id: environment-variables
 title: Environment Variables
-sidebar_position: 5
 ---
 
 # Environment Variables

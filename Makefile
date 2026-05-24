@@ -1,12 +1,13 @@
 # TGEnv — Developer Makefile
 #
 # Convenience targets for working on the project locally, including the
-# Docusaurus documentation site under ./docs.
+# MkDocs documentation site under ./docs.
 #
 # Run `make help` to list all available targets.
 
 DOCS_DIR := docs
-NPM      := npm
+PIP      := pip
+MKDOCS   := mkdocs
 
 .DEFAULT_GOAL := help
 
@@ -16,37 +17,33 @@ help: ## Show this help message
 		/^[a-zA-Z_-]+:.*?## / {printf "  \033[36m%-22s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
 # ---------------------------------------------------------------------------
-# Documentation (Docusaurus)
+# Documentation (MkDocs + Material)
 # ---------------------------------------------------------------------------
 
 .PHONY: docs-install
-docs-install: ## Install Docusaurus dependencies (npm ci)
-	cd $(DOCS_DIR) && $(NPM) ci
-
-.PHONY: docs-install-dev
-docs-install-dev: ## Install Docusaurus dependencies for first run (npm install)
-	cd $(DOCS_DIR) && $(NPM) install
+docs-install: ## Install MkDocs and Material theme (pip install mkdocs-material)
+	$(PIP) install mkdocs-material
 
 .PHONY: docs-start
-docs-start: ## Start the local dev server with hot reload (http://localhost:3000/tgenv/)
-	cd $(DOCS_DIR) && $(NPM) start
+docs-start: ## Start the local dev server with live reload (http://localhost:8000)
+	cd $(DOCS_DIR) && $(MKDOCS) serve
 
 .PHONY: docs-build
-docs-build: ## Build the static site into docs/build (same command CI runs)
-	cd $(DOCS_DIR) && $(NPM) run build
+docs-build: ## Build the static site into docs/site (same command CI runs)
+	cd $(DOCS_DIR) && $(MKDOCS) build
 
-.PHONY: docs-serve
-docs-serve: docs-build ## Build and serve the production bundle locally
-	cd $(DOCS_DIR) && $(NPM) run serve
+.PHONY: docs-deploy
+docs-deploy: ## Deploy docs directly to GitHub Pages via mkdocs gh-deploy
+	cd $(DOCS_DIR) && $(MKDOCS) gh-deploy --force
 
 .PHONY: docs-clean
-docs-clean: ## Remove generated artifacts (build, .docusaurus, node_modules)
-	cd $(DOCS_DIR) && rm -rf build .docusaurus node_modules
+docs-clean: ## Remove generated artifacts (site/)
+	cd $(DOCS_DIR) && rm -rf site
 
 .PHONY: docs-check
-docs-check: docs-install docs-build ## Full validation pipeline used before opening a PR
+docs-check: docs-build ## Full validation pipeline used before opening a PR
 	@echo ""
-	@echo "Documentation build succeeded. Output: $(DOCS_DIR)/build"
+	@echo "Documentation build succeeded. Output: $(DOCS_DIR)/site"
 
 # ---------------------------------------------------------------------------
 # Shell scripts (TGEnv itself)

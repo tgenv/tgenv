@@ -1,7 +1,5 @@
 ---
-id: list
 title: tgenv list
-sidebar_position: 3
 ---
 
 # tgenv list
@@ -32,4 +30,4 @@ version file).
 
 - Versions are sorted in descending semantic-version order.
 - If no version is installed, the command fails and suggests
-  [`tgenv install`](./install).
+  [`tgenv install`](./install.md).
