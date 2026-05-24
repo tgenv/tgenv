@@ -14,7 +14,7 @@ tgenv install [<version>]
 
 ## Arguments
 
-- `<version>` — Optional. A literal version (`0.40.2`), the keyword `latest`,
+- `<version>` — Optional. A literal version (`1.0.5`), the keyword `latest`,
   or a `latest:<regex>` constraint. The regex is evaluated by `grep -e`.
 
 If no argument is provided and a `.terragrunt-version` file exists in the current
@@ -25,7 +25,7 @@ directory tree, TGEnv installs the version declared in it.
 Install an exact version:
 
 ```bash
-tgenv install 0.40.2
+tgenv install 1.0.5
 ```
 
 Install the most recent stable release:
@@ -34,10 +34,10 @@ Install the most recent stable release:
 tgenv install latest
 ```
 
-Install the latest version matching a regex (here, the latest `0.9.x`):
+Install the latest version matching a regex (here, the latest `1.0.x`):
 
 ```bash
-tgenv install latest:^0.9
+tgenv install latest:^1.0
 ```
 
 Install the version pinned by `.terragrunt-version`:

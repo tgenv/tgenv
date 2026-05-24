@@ -3,7 +3,7 @@ site_description: Terragrunt Version Manager
 site_url: https://tgenv.github.io/tgenv/
 repo_url: https://github.com/tgenv/tgenv
 repo_name: tgenv/tgenv
-edit_uri: edit/main/docs/docs/
+edit_uri: edit/main/docs/
 
 docs_dir: docs
 

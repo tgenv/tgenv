@@ -16,10 +16,10 @@ tgenv list
 
 ```shell-session
 $ tgenv list
-* 0.42.5 (set by /home/user/project/.terragrunt-version)
-  0.40.2
-  0.12.15
-  0.10.0
+* 1.0.5 (set by /home/user/project/.terragrunt-version)
+  1.0.3
+  0.99.5
+  0.67.0
 ```
 
 The asterisk (`*`) indicates the active version and the source file that

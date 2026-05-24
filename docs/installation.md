@@ -7,6 +7,12 @@ title: Installation
 TGEnv is distributed as a Git repository. Installing it is a two-step process:
 clone the repository and expose its `bin` directory through your `PATH`.
 
+> **Windows users:** TGEnv runs on Windows through
+> [WSL (Windows Subsystem for Linux)](https://learn.microsoft.com/en-us/windows/wsl/).
+> Follow the steps below inside your WSL terminal — the installation process is
+> identical to Linux. TGEnv detects WSL as a Linux environment and installs the
+> correct Linux binary automatically.
+
 ## 1. Clone the Repository
 
 Clone the latest version of TGEnv into your home directory:

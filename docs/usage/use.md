@@ -24,9 +24,9 @@ walking up the directory tree. If none is found, it falls back to `latest`.
 ## Examples
 
 ```bash
-tgenv use 0.40.2
+tgenv use 1.0.5
 tgenv use latest
-tgenv use latest:^0.10
+tgenv use latest:^1.0
 ```
 
 ## Behavior

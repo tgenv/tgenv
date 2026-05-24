@@ -19,7 +19,7 @@ global TGEnv version file at `~/.tgenv/version`.
 
 The file must contain a single line with one of:
 
-- A literal version, for example `0.42.5`.
+- A literal version, for example `1.0.5`.
 - The keyword `latest`.
 - A regex constraint with the `latest:<regex>` syntax. The regex is evaluated by
   `grep -e` against the locally installed versions.
@@ -29,13 +29,13 @@ The file must contain a single line with one of:
 Pin a project to an exact version:
 
 ```bash
-echo 0.42.5 > .terragrunt-version
+echo 1.0.5 > .terragrunt-version
 ```
 
-Track the latest installed `0.10.x`:
+Track the latest installed `1.0.x`:
 
 ```bash
-echo latest:^0.10 > .terragrunt-version
+echo latest:^1.0 > .terragrunt-version
 ```
 
 Use the most recent installed release:

@@ -36,6 +36,7 @@ TGEnv currently supports the following operating systems:
 - macOS (Intel, 64-bit)
 - macOS (Apple Silicon, arm64)
 - Linux (64-bit, amd64 and arm64)
+- Windows via [WSL](https://learn.microsoft.com/en-us/windows/wsl/) (Windows Subsystem for Linux)
 
 Continuous integration runs the test suite on Alpine, Ubuntu, Fedora and macOS.
 

@@ -5,9 +5,8 @@
 #
 # Run `make help` to list all available targets.
 
-DOCS_DIR := docs
-PIP      := pip
-MKDOCS   := mkdocs
+PIP    := pip
+MKDOCS := mkdocs
 
 .DEFAULT_GOAL := help
 
@@ -26,24 +25,24 @@ docs-install: ## Install MkDocs and Material theme (pip install mkdocs-material)
 
 .PHONY: docs-start
 docs-start: ## Start the local dev server with live reload (http://localhost:8000)
-	cd $(DOCS_DIR) && $(MKDOCS) serve
+	$(MKDOCS) serve
 
 .PHONY: docs-build
-docs-build: ## Build the static site into docs/site (same command CI runs)
-	cd $(DOCS_DIR) && $(MKDOCS) build
+docs-build: ## Build the static site into site/ (same command CI runs)
+	$(MKDOCS) build
 
 .PHONY: docs-deploy
 docs-deploy: ## Deploy docs directly to GitHub Pages via mkdocs gh-deploy
-	cd $(DOCS_DIR) && $(MKDOCS) gh-deploy --force
+	$(MKDOCS) gh-deploy --force
 
 .PHONY: docs-clean
 docs-clean: ## Remove generated artifacts (site/)
-	cd $(DOCS_DIR) && rm -rf site
+	rm -rf site
 
 .PHONY: docs-check
 docs-check: docs-build ## Full validation pipeline used before opening a PR
 	@echo ""
-	@echo "Documentation build succeeded. Output: $(DOCS_DIR)/site"
+	@echo "Documentation build succeeded. Output: site/"
 
 # ---------------------------------------------------------------------------
 # Shell scripts (TGEnv itself)

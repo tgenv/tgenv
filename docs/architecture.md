@@ -27,13 +27,12 @@ tgenv/
 │   ├── tgenv-help
 │   └── tgenv---version
 ├── docs/
-│   ├── mkdocs.yml     # MkDocs site configuration and navigation
-│   ├── docs/          # Markdown documentation pages
-│   │   ├── index.md
-│   │   ├── installation.md
-│   │   ├── usage/
-│   │   └── ...
-│   └── static/        # Static assets (logo, favicon)
+│   ├── index.md           # Markdown documentation pages
+│   ├── installation.md
+│   ├── usage/
+│   ├── img/               # Static assets (logo, favicon)
+│   └── ...
+├── mkdocs.yml             # MkDocs site configuration and navigation
 ├── list_all_versions_offline   # Cached remote release list
 ├── test/                       # Bash test harness
 └── assets/                     # Logo and branding

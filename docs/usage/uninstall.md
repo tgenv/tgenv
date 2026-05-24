@@ -23,9 +23,9 @@ If no argument is provided, TGEnv reads the version from the resolved
 ## Examples
 
 ```bash
-tgenv uninstall 0.12.1
+tgenv uninstall 1.0.2
 tgenv uninstall latest
-tgenv uninstall latest:^0.9
+tgenv uninstall latest:^1.0
 ```
 
 ## Behavior

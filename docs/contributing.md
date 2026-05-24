@@ -79,7 +79,6 @@ pip install mkdocs-material
 ### Running locally
 
 ```bash
-cd docs
 mkdocs serve
 ```
 
@@ -88,17 +87,16 @@ The dev server starts at `http://localhost:8000` with live reload.
 ### Building
 
 ```bash
-cd docs
 mkdocs build
 ```
 
-The static output is placed under `docs/site/`.
+The static output is placed under `site/`.
 
 ### Structure
 
-- `docs/mkdocs.yml` — site configuration, theme and navigation.
-- `docs/docs/` — Markdown pages (one file per topic).
-- `docs/static/img/` — logo and favicon.
+- `mkdocs.yml` — site configuration, theme and navigation.
+- `docs/` — Markdown pages (one file per topic).
+- `docs/img/` — logo and favicon.
 
 Navigation order is declared in the `nav:` section of `mkdocs.yml`. When
 adding a new page, register it there as well.
