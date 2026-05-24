@@ -13,7 +13,16 @@ clone the repository and expose its `bin` directory through your `PATH`.
 > identical to Linux. TGEnv detects WSL as a Linux environment and installs the
 > correct Linux binary automatically.
 
-## 1. Clone the Repository
+## Homebrew (macOS and Linux)
+
+The repository ships a Homebrew formula. Add the tap and install:
+
+```bash
+brew tap tgenv/tgenv
+brew install tgenv
+```
+
+## Manual Installation
 
 Clone the latest version of TGEnv into your home directory:
 
@@ -24,10 +33,10 @@ git clone --depth 1 --branch main https://github.com/tgenv/tgenv.git ~/.tgenv
 To pin a specific release, replace `main` with a tag name:
 
 ```bash
-git clone --depth 1 --branch v1.0.0 https://github.com/tgenv/tgenv.git ~/.tgenv
+git clone --depth 1 --branch v1.2.1 https://github.com/tgenv/tgenv.git ~/.tgenv
 ```
 
-## 2. Add TGEnv to Your PATH
+## Add TGEnv to Your PATH
 
 ### Bash
 

@@ -16,6 +16,7 @@ tgenv/
 │   └── terragrunt     # Shim that delegates to the active version
 ├── libexec/
 │   ├── helpers        # Shared logging and HTTP helpers
+│   ├── tgenv-exec
 │   ├── tgenv-install
 │   ├── tgenv-use
 │   ├── tgenv-list
@@ -33,6 +34,9 @@ tgenv/
 │   ├── img/               # Static assets (logo, favicon)
 │   └── ...
 ├── mkdocs.yml             # MkDocs site configuration and navigation
+├── Formula/
+│   └── tgenv.rb           # Homebrew formula
+├── CHANGELOG.md
 ├── list_all_versions_offline   # Cached remote release list
 ├── test/                       # Bash test harness
 └── assets/                     # Logo and branding
@@ -50,7 +54,9 @@ tgenv/
    script (for example `tgenv install` runs `libexec/tgenv-install`).
 
 Each subcommand is a self-contained Bash script. Adding a new command means
-dropping a new `tgenv-<name>` script under `libexec/`.
+dropping a new `tgenv-<name>` script under `libexec/`. The `tgenv-exec`
+subcommand is a special case: it prepends the selected version's binary path to
+`PATH` and then delegates to it, allowing `tgenv exec <command>` invocations.
 
 ## The Terragrunt Shim
 

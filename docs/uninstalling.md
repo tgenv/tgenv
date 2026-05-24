@@ -20,7 +20,7 @@ If you cloned TGEnv to a different location, delete that directory instead.
 ## 2. Remove TGEnv From Your PATH
 
 Open the shell startup file you edited during
-[installation](./installation.md#2-add-tgenv-to-your-path) (for example
+[installation](./installation.md#add-tgenv-to-your-path) (for example
 `~/.bash_profile`, `~/.bashrc` or `~/.zshrc`) and remove the line that adds
 `~/.tgenv/bin` to your `PATH`.
 

@@ -14,8 +14,8 @@ cleanup || error_and_die "Cleanup failed?!"
 
 versions=(
   1.0.5
-  0.50.17
-  0.49.1
+  1.0.3
+  1.0.1
 )
 for v in "${versions[@]}"; do
   tgenv install "${v}" || error_and_proceed "Install of version ${v} failed"
@@ -25,8 +25,8 @@ tgenv use 1.0.5
 result="$(tgenv list)";
 expected="$(cat << EOS
 * 1.0.5 (set by $(tgenv version-file))
-  0.50.17
-  0.49.1
+  1.0.3
+  1.0.1
 EOS
 )"
 

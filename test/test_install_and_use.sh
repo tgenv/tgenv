@@ -67,10 +67,10 @@ echo "${v}" > ./.terragrunt-version
 echo "### Install latest:<regex> .terragrunt-version"
 cleanup || error_and_die "Cleanup failed?!"
 
-echo "0.50.17" > ./.terragrunt-version
+echo "1.0.3" > ./.terragrunt-version
 (
   terragrunt --version || exit 1
-  check_version "0.50.17" || exit 1
+  check_version "1.0.3" || exit 1
 ) || error_and_proceed "Installing .terragrunt-version ${v}"
 
 ##################################################
@@ -79,8 +79,8 @@ echo "0.50.17" > ./.terragrunt-version
 echo "### Install latest:<regex> .terragrunt-version"
 cleanup || error_and_die "Cleanup failed?!"
 
-v=$(tgenv list-remote | grep -e '^0.38' | head -n 1)
-echo "latest:^0.38" > ./.terragrunt-version
+v=$(tgenv list-remote | grep -e '^1.0.4' | head -n 1)
+echo "latest:^1.0.4" > ./.terragrunt-version
 (
   tgenv install || exit 1
   check_version "${v}" || exit 1

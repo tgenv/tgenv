@@ -18,8 +18,8 @@ tgenv list
 $ tgenv list
 * 1.0.5 (set by /home/user/project/.terragrunt-version)
   1.0.3
-  0.99.5
-  0.67.0
+  1.0.1
+  1.0.0
 ```
 
 The asterisk (`*`) indicates the active version and the source file that
