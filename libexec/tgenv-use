@@ -29,16 +29,26 @@ else
   regex="^${version_requested}$"
 fi
 
-[ -d "${TGENV_ROOT}/versions" ] \
-  || error_and_die "No versions of terragrunt installed. Please install one with: tgenv install"
-
 version="$(\ls "${TGENV_ROOT}/versions" \
   | sort -t'.' -k 1nr,1 -k 2nr,2 -k 3nr,3 \
   | grep -e "${regex}" \
   | head -n 1
 )"
 
-[ -n "${version}" ] || error_and_die "No installed versions of terragrunt matched '${version_requested}'"
+if [ -z "${version}" ]; then
+  if [ "${TGENV_AUTO_INSTALL:-true}" == "true" ]; then
+    info "version '${version_requested}' is not installed. Installing now as TGENV_AUTO_INSTALL==true"
+    tgenv-install "${version_requested}"
+    version="$(\ls "${TGENV_ROOT}/versions" \
+      | sort -t'.' -k 1nr,1 -k 2nr,2 -k 3nr,3 \
+      | grep -e "${regex}" \
+      | head -n 1
+    )"
+    [ -n "${version}" ] || error_and_die "Installation of '${version_requested}' succeeded but version not found afterwards"
+  else
+    error_and_die "No installed versions of terragrunt matched '${version_requested}'. Set TGENV_AUTO_INSTALL=true to install automatically or install one with: tgenv install"
+  fi
+fi
 
 target_path="${TGENV_ROOT}/versions/${version}"
 [ -f "${target_path}/terragrunt" ] \
