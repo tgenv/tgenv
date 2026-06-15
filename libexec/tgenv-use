@@ -8,10 +8,9 @@ declare version_requested version regex
 if [ -z "${1}" ]; then
   info "Version not specified, looking for version file"
   version_file="$(tgenv-version-file)"
-  if [ "${version_file}" != "${TGENV_ROOT}/version" ]; then
-    version_requested="$(cat "${version_file}" || true)"
-  else
-    info "Version file not found, using latest"
+  version_requested="$(cat "${version_file}" || true)"
+  if [ -z "${version_requested}" ]; then
+    info "Version file not found or empty, using latest"
     version_requested="latest"
   fi
 else
