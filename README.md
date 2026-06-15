@@ -1,256 +1,41 @@
-# TGENV - Terragrunt Version Manager
+# TGEnv — Terragrunt Version Manager
 
-![Tests](https://github.com/tgenv/tgenv/actions/workflows/tests.yml/badge.svg?branch=main)
+[![Tests](https://github.com/tgenv/tgenv/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/tgenv/tgenv/actions/workflows/tests.yml)
+[![Latest Release](https://img.shields.io/github/v/release/tgenv/tgenv?label=release)](https://github.com/tgenv/tgenv/releases/latest)
+[![License](https://img.shields.io/github/license/tgenv/tgenv)](LICENSE)
+![Linux](https://img.shields.io/badge/Linux-FCC624?logo=linux&logoColor=black)
+![macOS](https://img.shields.io/badge/macOS-000000?logo=apple&logoColor=white)
+![WSL](https://img.shields.io/badge/WSL-0078D4?logo=windows&logoColor=white)
+![Shell Script](https://img.shields.io/badge/Shell_Script-121011?logo=gnu-bash&logoColor=white)
 
-![lixnux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black) ![macos](https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=apple&logoColor=white) ![shell](https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white)
-
-![tgenvlogo](/assets/tgenv-logo.png)
-
-This project was forked from old project [cunymatthieu/tgenv](https://github.com/cunymatthieu/tgenv). The intention here it's keep the project alive.
-
->[Terragrunt](https://github.com/gruntwork-io/terragrunt) version manager inspired by [tfenv](https://github.com/kamatama41/tfenv) project.
-
-
-## Support :computer:
-
-Currently tgenv supports the following OSes
-- Mac OS X (64bit)
-- Mac OS M1 (arm64)
-- Linux (64bit)
+> A [Terragrunt](https://github.com/gruntwork-io/terragrunt) version manager inspired by [tfenv](https://github.com/tfutils/tfenv). Install, switch and manage multiple Terragrunt versions from a single shell environment.
 
 ---
 
-## Summary :bookmark: 
+## Documentation
 
- * [Installation](#installation-wrench) :wrench:
-   * [Cloning the repository](#1-cloning-the-repository)
-   * [Export PATH](#2-export-to-path)
- * [Usage](#usage-arrow_forward) :arrow_forward:
-   * [tgenv install](#tgenv-install)
-   * [tgenv use](#tgenv-use)
-   * [tgenv uninstall](#tgenv-uninstall)
-   * [tgenv list](#tgenv-list)
-   * [tgenv list-remote](#tgenv-list-remote)
-   * [tgenv upgrade](#tgenv-upgrade)
- * [The terragrunt-version file](#the-terragrunt-version-file-page_facing_up) :page_facing_up:
- * [Environment Variables](#environment-variables-package) :package:
-   * [TGENV_AUTO_INSTALL](#tgenv_auto_install)
-   * [TGENV_DEBUG](#tgenv_debug)
- * [Uninstalling](#uninstalling-no_entry_sign) :no_entry_sign:
- * [License](#license-thumbsup) :thumbsup:
+Full documentation is available at **[tgenv.github.io/tgenv](https://tgenv.github.io/tgenv/)**, covering:
 
----
+- [Installation](https://tgenv.github.io/tgenv/installation/)
+- [Usage](https://tgenv.github.io/tgenv/usage/install/) — `install`, `use`, `list`, `list-remote`, `uninstall`, `upgrade`
+- [The `.terragrunt-version` file](https://tgenv.github.io/tgenv/terragrunt-version-file/)
+- [Environment Variables](https://tgenv.github.io/tgenv/environment-variables/)
+- [Architecture](https://tgenv.github.io/tgenv/architecture/)
+- [Contributing](https://tgenv.github.io/tgenv/contributing/)
 
-## Installation :wrench:
-
-### 1. Cloning the repository
-
-Check out latest version of tgenv
-
-  ```bash
-  $ git clone --depth 1 --branch main https://github.com/tgenv/tgenv.git ~/.tgenv
-  ```
-
-Or checkout tgenv at specific tag
-
-  ```bash
-  $ git clone --depth 1 --branch v1.0.0 https://github.com/tgenv/tgenv.git ~/.tgenv
-  ```
-
-### 2. Add tgenv to $PATH
-
-#### Bash
-
-Add `~/.tgenv/bin` to your `$PATH` any way you like
-
-  ```bash
-  $ echo 'export PATH="$HOME/.tgenv/bin:$PATH"' >> ~/.bash_profile
-  ```
-
-  OR you can make symlinks for `tgenv/bin/*` scripts into a path that is already added to your `$PATH` (e.g. `/usr/local/bin`) `OSX/Linux Only!`
-
-  ```bash
-  $ ln -s ~/.tgenv/bin/* /usr/local/bin
-  ```
-
-#### ZSH
-
-Add `~/.tgenv/bin` to your `$PATH` any way you like
-
-  ```bash
-  $ echo 'export PATH="$HOME/.tgenv/bin:$PATH"' >> ~/.zshrc
-  ```
-
-If you use [Oh My Zsh](ttps://github.com/ohmyzsh/ohmyzsh), after export just run
+## Quick Start
 
 ```bash
-$ omz reload
+git clone --depth 1 --branch main https://github.com/tgenv/tgenv.git ~/.tgenv
+echo 'export PATH="$HOME/.tgenv/bin:$PATH"' >> ~/.bash_profile
 ```
-
-## Usage :arrow_forward:
-
-### tgenv install
-
-Install a specific version of terragrunt
-
-* `latest` is a syntax to install latest version
-* `latest:<regex>` is a syntax to install latest version matching regex (used by grep -e)
 
 ```bash
-$ tgenv install 0.40.2
-$ tgenv install latest
-$ tgenv install latest:^0.9
+tgenv install latest
+tgenv use latest
 ```
 
-If you use [.terragrunt-version](#terragrunt-version), `tgenv install` (no argument) will install the version written in it.
+## License
 
-### tgenv use
-
-Switch a version to use
-`latest` is a syntax to use the latest installed version
-`latest:<regex>` is a syntax to use latest installed version matching regex (used by grep -e)
-
-```bash
-$ tgenv use 0.40.2
-$ tgenv use latest
-$ tgenv use latest:^0.10
-```
-
-### tgenv uninstall
-
-Uninstall a specific version of terragrunt
-`latest` is a syntax to uninstall latest version
-`latest:<regex>` is a syntax to uninstall latest version matching regex (used by grep -e)
-
-```bash
-$ tgenv uninstall 0.12.1
-$ tgenv uninstall latest
-$ tgenv uninstall latest:^0.9
-```
-
-### tgenv list
-
-List installed versions
-
-```bash
-% tgenv list
-0.12.15
-0.12.8
-0.10.0
-0.9.9
-```
-
-### tgenv list-remote
-
-List installable versions
-
-```bash
-% tgenv list-remote
-0.42.5
-0.42.4
-0.42.3
-0.42.2
-0.42.1
-0.42.0
-0.41.0
-0.40.2
-0.40.1
-0.40.0
-0.39.2
-0.39.1
-0.39.0
-...
-```
-
-### tgenv upgrade
-
-Upgrade the version of TGEnv software to latest version
-
-`$ tgenv upgrade`
-
-## The terragrunt-version file :page_facing_up:
-
-If you put `.terragrunt-version` file on your project root, tgenv detects it and use the version written in it. If the version is `latest` or `latest:<regex>`, the latest matching version currently installed will be selected.
-
-```bash
-$ cat .terragrunt-version
-0.9.9
-
-$ terragrunt --version
-terragrunt version v0.9.9
-
-Your version of terragrunt is out of date! The latest version
-is 0.7.3. You can update by downloading from www.terragrunt.io
-
-$ echo 0.9.9 > .terragrunt-version
-
-$ terragrunt --version
-terragrunt v0.12.15
-
-$ echo latest:^0.10 > .terragrunt-version
-
-$ terragrunt --version
-terragrunt v0.10.3
-```
-
-## Environment Variables :package:
-
-#### `TGENV_AUTO_INSTALL`
-
-String (Default: true)
-
-Should tgenv automatically install terragrunt if the version specified by defaults or a .terragrunt-version file is not currently installed.
-
-```console
-TGENV_AUTO_INSTALL=false terragrunt plan
-```
-
-#### `TGENV_DEBUG`
-
-Integer (Default: "")
-
-Set the debug level for TGENV.
-
-* unset/empty-string: No debug output
-* set: Bash execution tracing
-
-#### `TGENV_DISABLE_COLOR`
-
-Integer (Default: "")
-
-Disable colored output for tgenv. This variable can either be set explicitly or will be set
-automatically if the `-no-color` flag is used with the terragrunt binary.
-
-## Uninstalling :no_entry_sign:
-
-Just run:
-```bash
-$ rm -rf /some/path/to/tgenv
-```
-
-And delete the previous export `$PATH` .
-
-> The uninstall command is under development.
-
-## LICENSE :thumbsup:
-- [tgenv itself](https://github.com/tgenv/tgenv/blob/master/LICENSE)
-- [tfenv ](https://github.com/kamatama41/tgenv/blob/master/LICENSE) : tfenv mainly uses tfenv's source code
-
-## Contributing
-
-This project requires contributions adhere to [shellcheck](https://www.shellcheck.net/) standards which are configured in [.shellcheckrc](.shellcheckrc).
-
-Shell check can be run locally in your CLI. Refer to the shell check README for [installation instructions](https://github.com/koalaman/shellcheck?tab=readme-ov-file#installing).
-
-```bash
-shellcheck test/* bin/* libexec/*
-```
-
-### Auto Fix
-
-Shellcheck can output diffs which can then be automatically applied to the code. See for details.
-
-```
-shellcheck -f diff my-script.sh | patch
-```
+[MIT](LICENSE) — forked from [cunymatthieu/tgenv](https://github.com/cunymatthieu/tgenv).
 

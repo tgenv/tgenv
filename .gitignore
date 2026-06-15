@@ -3,3 +3,6 @@
 
 version
 versions/
+
+# MkDocs build output
+site/
