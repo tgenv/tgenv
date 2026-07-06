@@ -6,3 +6,4 @@ versions/
 
 # MkDocs build output
 site/
+docs/site/
